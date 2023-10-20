@@ -18,8 +18,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh "${mavenHome}/bin/mvn --version" // Use the specified Maven installation
-                    sh "${mavenHome}/bin/mvn clean package -DskipTests" // Build your Maven project
+                    sh "mvn --version" // Use the specified Maven installation
+                    sh "mvn clean package -DskipTests" // Build your Maven project
                 }
             }
         }
