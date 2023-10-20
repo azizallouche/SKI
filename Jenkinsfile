@@ -1,8 +1,10 @@
 pipeline {
 
-    environment {
-        dockerimagename = "ski"
+environment {
+dockerimagename = "ski"
         dockerImage = ""
+        M2_HOME = '/Users/3alouch/Downloads/apache-maven-3.9.5' 
+        PATH = "${M2_HOME}/bin:${env.PATH}"
     }
 
     agent any
@@ -15,10 +17,7 @@ pipeline {
                     url: 'https://github.com/azizallouche/SKI'
             }
         }
-       environment {
-        M2_HOME = '/Users/3alouch/Downloads/apache-maven-3.9.5' 
-        PATH = "${M2_HOME}/bin:${env.PATH}"
-    }
+       
 
     stages {
         stage('Build') {
