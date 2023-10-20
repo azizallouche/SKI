@@ -9,31 +9,39 @@ pipeline {
             }
         }
 
-        stage('Build') {
+         stage('Build Maven') {
             steps {
-                sh 'mvn --version'
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn clean package'
             }
         }
-
-        stage("Build Docker image") {
+        
+        stage('Run Sonar')  {
             steps {
-                script {
-                    dockerImage = docker.build(dockerImageName, '.')
+                withCredentials([string(credentialsId: '27eae044-9e8b-43d1-87c3-9f71ad3e9fdb', variable: 'SONAR_TOKEN')]) {
+                    sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000/ -Dsonar.login=$SONAR_TOKEN'
                 }
             }
         }
-
-        stage("Start app and db") {
+        
+        stage('Run Tests') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'mvn test'
             }
         }
-    }
 
-    post {
-        always {
-            cleanWs()
+        stage('Maven Deploy') {
+            steps {
+                sh 'mvn deploy'
+            }
         }
+
+        stage('Date') {
+            steps {
+                // Display the current date and time
+                sh 'date'
+            }
+        }
+        
+        // Add stages for additional tasks as needed
     }
 }
