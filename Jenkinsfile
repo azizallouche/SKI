@@ -1,47 +1,78 @@
 pipeline {
+
+    environment {
+        dockerimagename = "ski"
+        dockerImage = ""
+    }
+
+
     agent any
 
     stages {
-        stage('GIT') {
+        stage ('GIT') {
             steps {
-                echo "Getting Project from Git"
-                git branch: 'aziz', url: 'https://github.com/azizallouche/SKI'
+               echo "Getting Project from Git"; 
+                git branch: 'aziz',
+                    url: 'https://github.com/azizallouche/SKI'
             }
         }
+       
 
-         stage('Build Maven') {
+    stages {
+        stage('Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn --version'  // Replace this with your Maven commands
             }
         }
-        
-        stage('Run Sonar')  {
+        stage("Build") {
             steps {
-                withCredentials([string(credentialsId: '27eae044-9e8b-43d1-87c3-9f71ad3e9fdb', variable: 'SONAR_TOKEN')]) {
-                    sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000/ -Dsonar.login=$SONAR_TOKEN'
+                sh "mvn --version"
+                sh "mvn clean package -DskipTests"
+            }
+        }
+/*
+        stage("Sonar") {
+            steps {
+                sh "mvn sonar:sonar"
+            }
+        }
+//
+        stage("SRC Analysis Testing") {
+            steps {
+                sh "mvn sonar:sonar"
+            }
+        }
+*/
+        stage("Build Docker image") {
+            steps {
+                script {
+                    dockerImage = docker.build(dockerimagename, '.')
                 }
             }
         }
-        
-        stage('Run Tests') {
+        stage("Start app and db") {
             steps {
-                sh 'mvn test'
+                sh "docker-compose up -d"
             }
         }
-
-        stage('Maven Deploy') {
+/*
+        stage("Deploy Artifact to private registry") {
             steps {
-                sh 'mvn deploy'
+                sh "..............."
             }
         }
-
-        stage('Date') {
+//
+        stage("Deploy Dokcer Image to private registry") {
             steps {
-                // Display the current date and time
-                sh 'date'
+                sh "..............."
             }
         }
-        
-        // Add stages for additional tasks as needed
+    }
+//
+    post {
+        always {
+            cleanWs()
+        }
+*/
     }
 }
