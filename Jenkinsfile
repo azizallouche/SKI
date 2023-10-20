@@ -15,7 +15,17 @@ pipeline {
                     url: 'https://github.com/azizallouche/SKI'
             }
         }
-       
+       environment {
+        M2_HOME = '/Users/3alouch/Downloads/apache-maven-3.9.5' 
+        PATH = "${M2_HOME}/bin:${env.PATH}"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn --version'  // Replace this with your Maven commands
+            }
+        }
         stage("Build") {
             steps {
                 sh "mvn --version"
