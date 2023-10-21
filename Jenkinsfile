@@ -1,7 +1,6 @@
 pipeline {
     environment {
         dockerImageName = "ski"
-       
     }
 
     agent any
@@ -27,7 +26,8 @@ pipeline {
         stage("Build Docker image") {
             steps {
                 script {
-                    dockerImage = docker.build(dockerImageName)
+                    // Build your Docker image using the official OpenJDK image
+                    dockerImage = docker.build(dockerImageName, "--build-arg BASE_IMAGE=openjdk:17-jdk-slim .")
                 }
             }
         }
