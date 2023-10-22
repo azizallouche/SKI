@@ -24,9 +24,9 @@ public class OpenAPIConfig {
     }
 
     public Contact contactAPI() {
-        Contact contact = new Contact().name("Atef Maddouri")
-                .email("atef.maddouri@esprit.tn")
-                .url("https://www.linkedin.com/in/atef-maddouri/");
+        Contact contact = new Contact().name("Aziz Allouche")
+                .email("mohamedaziz.allouche@esprit.tn")
+                .url("https://www.linkedin.com/in/mohamedaziz-allouche-8a5a92294/");
         return contact;
     }
 
