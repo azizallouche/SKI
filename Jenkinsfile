@@ -37,9 +37,9 @@ pipeline {
                 sh "docker-compose up -d"
             }
         }
-         stage("Deploy Artifact to Nexus") {
+         stage("Nexus") {
             steps {
-                sh "mvn deploy -Pprod"
+                sh "mvn deploy"
             }}
     }
 
