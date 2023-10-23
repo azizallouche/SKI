@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     sh "mvn --version" // Use the specified Maven installation
-                    sh "mvn clean package -DskipTests" // Build your Maven project
+                    sh "mvn clean package" // Build your Maven project
                 }
             }
         }
