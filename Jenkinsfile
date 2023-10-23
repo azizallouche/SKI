@@ -1,11 +1,8 @@
 pipeline {
     environment {
         dockerImageName = "ski"
-       
     }
-
     agent any
-
     stages {
         stage('GIT') {
             steps {
@@ -14,17 +11,21 @@ pipeline {
                     url: 'https://github.com/azizallouche/SKI'
             }
         }
-
         stage('Build') {
             steps {
                 script {
-                    sh "chmod +x ./mvnw"
-                sh "mvn clean package -Pprod -X"
-                sh "mvn --version"
+                    sh "mvn --version" // Use the specified Maven installation
+                    sh "mvn clean package -DskipTests" // Build your Maven project, skipping tests
                 }
             }
         }
-
+        stage("Deploy Artifacts") {
+            steps {
+                script {
+                    sh "mvn deploy -DskipTests" // Deploy your artifacts, skipping tests
+                }
+            }
+        }
         stage("Build Docker image") {
             steps {
                 script {
@@ -32,18 +33,12 @@ pipeline {
                 }
             }
         }
-
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
             }
         }
-         stage("Nexus") {
-            steps {
-                sh "mvn deploy DskipTests"
-            }}
     }
-
     post {
         always {
             cleanWs()
