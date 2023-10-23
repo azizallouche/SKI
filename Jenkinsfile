@@ -18,8 +18,9 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh "mvn --version" // Use the specified Maven installation
-                    sh "mvn clean package" // Build your Maven project
+                    sh "chmod +x ./mvnw"
+                sh "mvn clean package -Pprod -X"
+                sh "mvn --version"
                 }
             }
         }
