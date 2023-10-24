@@ -11,25 +11,31 @@ pipeline {
                     url: 'https://github.com/azizallouche/SKI'
             }
         }
-        stage('Build') {
+         stage("Build") {
             steps {
-                script {
-                    sh "mvn --version" // Use the specified Maven installation
-                    sh "mvn clean package -DskipTests -X" // Build your Maven project, skipping tests
-                }
+                sh "chmod +x ./mvnw"
+                sh "mvn clean package -Pprod -X"
+                sh "mvn --version"
+                // sh "mvn clean package -DskipTests"
             }
         }
-        stage("Deploy Artifacts") {
+/*
+        stage("Sonar") {
             steps {
-                script {
-                    sh "mvn deploy -DskipTests -X" // Deploy your artifacts, skipping tests
-                }
+                sh "mvn sonar:sonar"
             }
         }
+//
+        stage("SRC Analysis Testing") {
+            steps {
+                sh "mvn sonar:sonar"
+            }
+        }
+*/
         stage("Build Docker image") {
             steps {
                 script {
-                    dockerImage = docker.build(dockerImageName)
+                    dockerImage = docker.build(dockerimagename, '.')
                 }
             }
         }
@@ -38,10 +44,26 @@ pipeline {
                 sh "docker-compose up -d"
             }
         }
+
+
+        stage("Deploy Artifact to Nexus") {
+            steps {
+                sh "mvn deploy -Pprod"
+            }
+        }
+/*
+//
+        stage("Deploy Dokcer Image to private registry") {
+            steps {
+                sh "..............."
+            }
+        }
     }
+// deploymentRepo
     post {
         always {
             cleanWs()
         }
+*/
     }
 }
