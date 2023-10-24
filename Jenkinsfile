@@ -22,7 +22,7 @@ pipeline {
         stage("Deploy Artifacts") {
             steps {
                 script {
-                    sh "mvn deploy -DskipTests" // Deploy your artifacts, skipping tests
+                    sh "mvn deploy -DskipTests -X" // Deploy your artifacts, skipping tests
                 }
             }
         }
