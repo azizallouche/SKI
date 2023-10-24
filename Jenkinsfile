@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     sh "mvn --version" // Use the specified Maven installation
-                    sh "mvn clean package -DskipTests" // Build your Maven project, skipping tests
+                    sh "mvn clean package -DskipTests -X" // Build your Maven project, skipping tests
                 }
             }
         }
