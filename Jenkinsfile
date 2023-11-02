@@ -10,7 +10,7 @@ pipeline {
         stage('GIT') {
             steps {
                 echo "Getting Project from Git"
-                git branch: 'aziz',
+                git branch: 'farah',
                     url: 'https://github.com/azizallouche/SKI'
             }
         }
@@ -21,6 +21,12 @@ pipeline {
                     sh "mvn --version" // Use the specified Maven installation
                     sh "mvn clean package -DskipTests" // Build your Maven project
                 }
+            }
+        }
+       stage('Sonarqube') {
+            steps {
+                echo 'sonar test';
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin/sonar'
             }
         }
 
