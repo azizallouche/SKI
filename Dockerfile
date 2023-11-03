@@ -1,4 +1,4 @@
 FROM openjdk:17-jdk-slim
-ADD target/SkiStationProject-0.0.1-SNAPSHOT.jar ski.jar
-ENTRYPOINT ["java", "-jar","ski.jar"]
+ADD target/SkiStationProject-1.0.jar SkiStationProject-1.0.jar
+ENTRYPOINT ["java", "-jar","SkiStationProject-1.0.jar"]
 EXPOSE 9090
