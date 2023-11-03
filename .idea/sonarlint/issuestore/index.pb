@@ -100,3 +100,11 @@ Usrc/main/java/tn/esprit/SkiStationProject/controllers/RegistrationRestControlle
 mvnw,5\d\5d837c4ed85ecaaf932c506e80ff5d7b9f3d590d
 X
 (src/test/InstructorServicesImplTest.java,3\6\36d8e218d63a5b3d7dc7488e7fdb5a5ea3ecbf3e
+]
+-src/test/java/InstructorServiceImplTests.java,a\a\aa869cb1cbee0c45a156175c7fbad95e10157653
+\
+,src/test/java/InstructorServiceImpTests.java,a\a\aa7e0dd371298abe0762db9aa06bd9e3d8b1d807
+y
+Isrc/test/java/tn/esprit/SkiStationProject/InstructorServiceImplTests.java,c\c\cc0094cbc8ca6e22c23a6bde3eb2764a3002d958
+y
+Isrc/test/java/tn/esprit/SkiStationProject/InstructorServicesImplTest.java,0\5\056db150f96dc27fd1e286d499591b55d124539e

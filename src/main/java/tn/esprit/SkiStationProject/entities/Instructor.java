@@ -25,4 +25,7 @@ public class Instructor extends BaseEntity {
 	LocalDate dateOfHire;
 	@OneToMany
 	Set<Course> courses;
+
+	public Instructor(long l, String farah, String braiki) {
+	}
 }
