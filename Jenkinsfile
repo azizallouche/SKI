@@ -46,11 +46,12 @@ pipeline {
         }
 
 
-        stage("Deploy Artifact to Nexus") {
-            steps {
-                sh "mvn deploy -DskipTests=true"
-            }
-        }
+       stage('Deploy') {
+                    steps {
+                           sh 'mvn deploy -DskipTests=true'
+                                }
+                            }
+
 /*
 //
         stage("Deploy Dokcer Image to private registry") {
