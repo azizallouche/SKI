@@ -48,7 +48,7 @@ pipeline {
 
         stage("Deploy Artifact to Nexus") {
             steps {
-                sh "mvn deploy -Pprod -X"
+                sh "mvn deploy -DskipTests"
             }
         }
 /*
