@@ -11,12 +11,12 @@ pipeline {
                     url: 'https://github.com/azizallouche/SKI'
             }
         }
-         stage("Build") {
+         stage('Build') {
             steps {
-                sh "chmod +x ./mvnw"
-                sh "mvn clean package -Pprod -X"
-                sh "mvn --version"
-                // sh "mvn clean package -DskipTests"
+                script {
+                    sh "mvn --version" // Use the specified Maven installation
+                    sh "mvn clean package -DskipTests" // Build your Maven project
+                }
             }
         }
 /*
