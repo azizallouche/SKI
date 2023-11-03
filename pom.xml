@@ -49,6 +49,16 @@
         </dependency>
     </dependencies>
 <distributionManagement>
+          <profiles>
+        <!-- Prod profile -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!-- Set the Spring profile to "prod" for the active Spring profile -->
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 <repository>
 <id>deploymentRepo</id>
 <name>Nexus Repository</name>
