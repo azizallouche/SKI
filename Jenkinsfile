@@ -48,18 +48,21 @@ stage('SonarQube ') {
                                           }
                     }
 */
-stage("Deploy to private registry") {
+stage("Push to Private Registry") {
     steps {
         script {
             def nexusRegistryUrl = 'localhost:8081/repository/ski/'
             def dockerUsername = 'admin'
             def dockerPassword = 'aziz'
 
-            def dockerContext = 'desktop-linux'  // Specify the Docker context to use
+            // Log in to the Docker registry with secure password input
+            echo -n ${dockerPassword} | docker --context desktop-linux login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}
 
-            // Use the specified Docker context for Docker commands
-            sh "docker --context ${dockerContext} login -u ${dockerUsername} -p ${dockerPassword} ${nexusRegistryUrl}"
-            sh "docker --context ${dockerContext} push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
+            // Push the Docker image to the private registry
+            docker --context desktop-linux push ${nexusRegistryUrl}${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+
+            // Log out from the Docker registry
+            docker --context desktop-linux logout ${nexusRegistryUrl}
         }
     }
 }
