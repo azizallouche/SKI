@@ -27,12 +27,6 @@ Bsrc/main/java/tn/esprit/SkiStationProject/entities/BaseEntity.java,1\d\1d6cf1f
 Psrc/test/java/tn/esprit/SkiStationProject/SkiStationProjectApplicationTests.java,3\2\32612529f2bf390abf4e53db587b04cb1c53ebc8
 {
 Ksrc/main/java/tn/esprit/SkiStationProject/SkiStationProjectApplication.java,a\9\a9c7f760880ca0ce3a675510dd1226e54c2a6e0d
-]
--src/test/java/InstructorServiceImplTests.java,a\a\aa869cb1cbee0c45a156175c7fbad95e10157653
-\
-,src/test/java/InstructorServiceImpTests.java,a\a\aa7e0dd371298abe0762db9aa06bd9e3d8b1d807
-y
-Isrc/test/java/tn/esprit/SkiStationProject/InstructorServiceImplTests.java,c\c\cc0094cbc8ca6e22c23a6bde3eb2764a3002d958
 {
 Ksrc/main/java/tn/esprit/SkiStationProject/services/IInstructorServices.java,0\b\0b84adcb907497933f67f7efb09076482d716363
 y
