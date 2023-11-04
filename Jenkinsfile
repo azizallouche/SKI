@@ -60,7 +60,7 @@ docker.withRegistry( 'http://'+nexusRegistryUrl, "nexus" ) {
                 }
 
             }
-        }
+        }}
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
