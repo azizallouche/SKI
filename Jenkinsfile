@@ -39,7 +39,7 @@ stage('SonarQube ') {
                 }
             }
         }
-         stage('dockerhub') {
+        /* stage('dockerhub') {
                                           steps {
 
                                      sh "docker login -u 3alouch -p 191JMT3797"
@@ -47,17 +47,17 @@ stage('SonarQube ') {
                                      sh "docker push  3alouch/ski:$DOCKER_IMAGE_TAG"
                                           }
                     }
-
+*/
 stage("Deploy to private registry") {
             steps {
                 script {
 
-                    def nexusRegistryUrl = 'localhost:8081/repository/ski'
+                    def nexusRegistryUrl = 'localhost:8081/repository/ski/'
                     def dockerUsername = 'admin'
                     def dockerPassword = 'aziz'
 
                     sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
-                    sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}:$DOCKER_IMAGE_TAG"
+                    sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}$dockerImageName"
                     sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
                     sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
                 }
