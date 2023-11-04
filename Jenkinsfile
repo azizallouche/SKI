@@ -56,16 +56,16 @@ stage("Push to Private Registry") {
             def dockerPassword = 'aziz'
 
             // Log in to the Docker registry with secure password input
-            echo -n ${dockerPassword} | docker --context desktop-linux login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}
+             sh "echo -n ${dockerPassword} | docker --context desktop-linux login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
 
             // Push the Docker image to the private registry
-            docker --context desktop-linux push ${nexusRegistryUrl}${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+            sh " docker --context desktop-linux push ${nexusRegistryUrl}${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
 
             // Log out from the Docker registry
-            docker --context desktop-linux logout ${nexusRegistryUrl}
+            sh "docker --context desktop-linux logout ${nexusRegistryUrl}"
         }
     }
-}
+      }
 
         stage("Start app and db") {
             steps {
