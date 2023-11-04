@@ -18,3 +18,5 @@ Isrc/main/java/tn/esprit/SkiStationProject/services/PisteServicesImpl.java,6/e/
 Ksrc/main/java/tn/esprit/SkiStationProject/configurations/OpenAPIConfig.java,f/e/fe1eb13b8bba583b574429e1d64920763727f085
 ;
 Jenkinsfile,0/c/0c2c5c506cef0ed2d3ad2b7e45e97980b66f5520
+C
+docker-compose.yaml,e/f/ef8def03dc8f162799089e9b5f4321201c8810d5

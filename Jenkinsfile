@@ -1,6 +1,7 @@
 pipeline {
     environment {
         dockerImageName = "ski"
+        DOCKER_IMAGE_TAG = "v${BUILD_NUMBER}" // Using Jenkins BUILD_NUMBER as the tag
     }
     agent any
     stages {
@@ -30,20 +31,24 @@ stage('SonarQube ') {
                     sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=aziz'
                    }
              }
-/*
-        stage("SRC Analysis Testing") {
-            steps {
-                sh "mvn sonar:sonar"
-            }
-        }
-*/
+
         stage("Build Docker image") {
             steps {
                 script {
-                    dockerImage = docker.build(dockerimagename, '.')
+                    sh 'docker build -t $dockerImageName:$DOCKER_IMAGE_TAG -f Dockerfile ./'
                 }
             }
         }
+         stage('dockerhub') {
+                                          steps {
+
+                                     sh "docker login -u 3alouch -p 191JMT3797"
+                                     sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG 3alouch/SKI:$DOCKER_IMAGE_TAG"
+                                     sh "docker push  3alouch/SKI:$DOCKER_IMAGE_TAG"
+                                          }
+                    }
+
+
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
