@@ -4,11 +4,14 @@ pipeline {
     }
 
     stages {
-        stage('Checkout from GitHub') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'Dali']], userRemoteConfigs: [[url: 'https://github.com/azizallouche/SKI.git']]])
-            }
-        }
+
+        stage ('GIT') {
+                            steps {
+                               echo "Getting Project from Git";
+                                git branch: 'Dali',
+                                    url: 'https://github.com/azizallouche/SKI'
+                            }
+                        }
         stage("Build") {
                     steps {
                         sh "chmod +x ./mvnw"
