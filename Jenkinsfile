@@ -43,8 +43,8 @@ stage('SonarQube ') {
                                           steps {
 
                                      sh "docker login -u 3alouch -p 191JMT3797"
-                                     sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG 3alouch/SKI:$DOCKER_IMAGE_TAG"
-                                     sh "docker push  3alouch/SKI:$DOCKER_IMAGE_TAG"
+                                     sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG 3alouch/ski:$DOCKER_IMAGE_TAG"
+                                     sh "docker push  3alouch/ski:$DOCKER_IMAGE_TAG"
                                           }
                     }
 
