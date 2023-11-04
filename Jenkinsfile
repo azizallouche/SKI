@@ -19,13 +19,12 @@ pipeline {
                 }
             }
         }
+stage('SonarQube ') {
+             steps {
+                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=aziz'
+                   }
+             }
 /*
-        stage("Sonar") {
-            steps {
-                sh "mvn sonar:sonar"
-            }
-        }
-//
         stage("SRC Analysis Testing") {
             steps {
                 sh "mvn sonar:sonar"
