@@ -58,7 +58,7 @@ stage("Deploy to private registry") {
 
                     sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
                     sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
-                    sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
+
                     sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
                 }
 
