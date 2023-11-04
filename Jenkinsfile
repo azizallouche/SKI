@@ -19,6 +19,12 @@ pipeline {
                 }
             }
         }
+        stage('JUnit / Mockito Tests') {
+                    steps {
+                        // Run JUnit and Mockito tests using Maven
+                        sh 'mvn test'
+                    }
+                }
 stage('SonarQube ') {
              steps {
                     sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=aziz'

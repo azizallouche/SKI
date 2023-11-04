@@ -5,28 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1455ca97-0b34-40db-aa44-4b61f2ca92ef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/c/0c2c5c506cef0ed2d3ad2b7e45e97980b66f5520" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/2/32612529f2bf390abf4e53db587b04cb1c53ebc8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/e/6ef5b66fc9096afb4e0e179dfac8ef814a139dce" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/9/a9c7f760880ca0ce3a675510dd1226e54c2a6e0d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/4/c42275af72fdf9ac61a1e269898fa88aa6fc551f" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/5/c56b68207c85ba8a49f951514ce8e03492fd0665" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/e/fe1eb13b8bba583b574429e1d64920763727f085" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/0/c/0c2c5c506cef0ed2d3ad2b7e45e97980b66f5520" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/2/32612529f2bf390abf4e53db587b04cb1c53ebc8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/e/6ef5b66fc9096afb4e0e179dfac8ef814a139dce" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/a/9/a9c7f760880ca0ce3a675510dd1226e54c2a6e0d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/4/c42275af72fdf9ac61a1e269898fa88aa6fc551f" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/5/c56b68207c85ba8a49f951514ce8e03492fd0665" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/e/fe1eb13b8bba583b574429e1d64920763727f085" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SkiStationProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/tn/esprit/SkiStationProject/PisteServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
     </list>
@@ -108,7 +86,7 @@
       <updated>1699040155616</updated>
       <workItem from="1699040165188" duration="2952000" />
       <workItem from="1699090342058" duration="1584000" />
-      <workItem from="1699091979682" duration="809000" />
+      <workItem from="1699091979682" duration="1960000" />
     </task>
     <servers />
   </component>
