@@ -56,14 +56,14 @@ stage("Deploy to private registry") {
                     def dockerUsername = 'admin'
                     def dockerPassword = 'aziz'
 
-                 def dockerImage = docker.build("${dockerImageName}:${DOCKER_IMAGE_TAG}")
-                             docker.withRegistry(nexusRegistryUrl, dockerUsername, dockerPassword) {
-                                 dockerImage.push()
-                             }
+                    sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
+                    sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}:$DOCKER_IMAGE_TAG"
+                    sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
+                    sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
                 }
 
-
-        }}
+            }
+        }
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
