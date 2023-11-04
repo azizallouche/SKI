@@ -52,7 +52,7 @@ stage("Deploy to private registry") {
             steps {
                 script {
 
-                    def nexusRegistryUrl = 'localhost:8081/repository/ski/'
+                    def nexusRegistryUrl = 'localhost:8081/repository/ski'
                     def dockerUsername = 'admin'
                     def dockerPassword = 'aziz'
 
