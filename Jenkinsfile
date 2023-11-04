@@ -52,14 +52,13 @@ stage("Deploy to private registry") {
             steps {
                 script {
 
-                    def nexusRegistryUrl = 'http://192.168.1.20:8081/repository/'
+                    def nexusRegistryUrl = 'localhost:8081/repository/ski/'
                     def dockerUsername = 'admin'
                     def dockerPassword = 'aziz'
 
-                    sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
-                    sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
-                    sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
-                    sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
+                   docker.withRegistry('http://'+nexusRegistryUrl, dockerUsername, dockerPassword) {
+                                   sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
+                                   sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
                 }
 
             }
