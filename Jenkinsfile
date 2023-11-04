@@ -50,17 +50,7 @@ stage('SonarQube ') {
 */
 stage("Deploy to private registry") {
             steps {
-                script {
-
-                    def nexusRegistryUrl = 'localhost:8081/repository/ski/'
-                    def dockerUsername = 'admin'
-                    def dockerPassword = 'aziz'
-
-                    sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
-                    sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
-                    sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
-                    sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
-                }
+                 sh 'mvn deploy -DskipTests=true'
 
             }
         }
@@ -72,11 +62,7 @@ stage("Deploy to private registry") {
 
 
 
-       stage('Deploy') {
-                    steps {
-                           sh 'mvn deploy -DskipTests=true'
-                                }
-                            }
+
 
 /*
 //
