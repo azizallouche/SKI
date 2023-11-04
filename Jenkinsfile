@@ -56,9 +56,10 @@ stage("Deploy to private registry") {
                     def dockerUsername = 'admin'
                     def dockerPassword = 'aziz'
 
-                   docker.withRegistry('http://'+nexusRegistryUrl, dockerUsername, dockerPassword) {
-                                   sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
-                                   sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
+                 def dockerImage = docker.build("${dockerImageName}:${DOCKER_IMAGE_TAG}")
+                             docker.withRegistry(nexusRegistryUrl, dockerUsername, dockerPassword) {
+                                 dockerImage.push()
+                             }
                 }
 
             }
