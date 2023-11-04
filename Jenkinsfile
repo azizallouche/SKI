@@ -62,7 +62,7 @@ stage("Deploy to private registry") {
                              }
                 }
 
-            }
+
         }}
         stage("Start app and db") {
             steps {
