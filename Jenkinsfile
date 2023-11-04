@@ -57,6 +57,7 @@ stage("Deploy to private registry") {
                     def dockerPassword = 'aziz'
 
                     sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
+                    sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
 
                     sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
                 }
