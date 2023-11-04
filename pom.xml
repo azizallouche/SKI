@@ -17,6 +17,7 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -46,15 +47,16 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.9</version>
         </dependency>
-
-            <!-- ... autres dépendances ... -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
-
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
@@ -72,17 +74,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>8.9.7</version>
-                <configuration>
-                    <sonar.login>admin</sonar.login>
-                    <sonar.password>Louay1998</sonar.password>
-                </configuration>
-            </plugin>
         </plugins>
-        <finalName> devops-integration </finalName>
     </build>
 
 </project>
