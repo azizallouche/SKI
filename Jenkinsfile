@@ -49,18 +49,21 @@ stage('SonarQube ') {
                     }
 */
 stage("Deploy to private registry") {
-            steps {
-                script {
+    steps {
+        script {
+            def nexusRegistryUrl = 'localhost:8081/repository/ski/'
+            def dockerUsername = 'admin'
+            def dockerPassword = 'aziz'
 
-                    def nexusRegistryUrl = 'localhost:8081/repository/ski/'
-                    def dockerUsername = 'admin'
-                    def dockerPassword = 'aziz'
-docker.withRegistry( 'http://'+nexusRegistryUrl, "nexus" ) {
-             dockerImage.push(DOCKER_IMAGE_TAG)
-                }
+            def dockerContext = 'desktop-linux'  // Specify the Docker context to use
 
-            }
-        }}
+            // Use the specified Docker context for Docker commands
+            sh "docker --context ${dockerContext} login -u ${dockerUsername} -p ${dockerPassword} ${nexusRegistryUrl}"
+            sh "docker --context ${dockerContext} push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
+        }
+    }
+}
+
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
