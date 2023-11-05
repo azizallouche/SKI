@@ -43,12 +43,17 @@ pipeline {
                 sh 'mvn package -Dmaven.test.skip=true -P test-coverage'
             }
         }
-        stage('Build docker image'){
-            steps{
-                script{
-                    sh 'docker build -t louay/devops-integration .'
+        stage("Nexus") {
+                    steps {
+                        sh "mvn deploy"
+                    }
                 }
-            }
-        }
+         stage("Build Docker image") {
+                    steps {
+                        script {
+                            dockerImage = docker.build(dockerImageName)
+                        }
+                    }
+                }
     }
 }
