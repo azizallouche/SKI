@@ -45,7 +45,7 @@ pipeline {
         }
         stage("Nexus") {
                     steps {
-                        sh "mvn deploy"
+                        sh "mvn clean deploy"
                     }
                 }
          stage("Build Docker image") {
