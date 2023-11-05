@@ -1,0 +1,8 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ìëˆçÿÿÿÿÿ
+`
+java:S2259."JA "NullPointerException" could be thrown; "registration" is nullable here.(ÁÉÒá
+R
+java:S1854s"7Remove this useless assignment to local variable "map".(ÀÚâ‚úÿÿÿÿ
+C
+java:S1481s"(Remove this unused "map" local variable.(ÀÚâ‚úÿÿÿÿ

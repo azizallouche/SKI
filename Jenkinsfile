@@ -22,25 +22,18 @@ pipeline {
                 }
                 stage('Run JUnit and Mockito Tests') {
                     steps {
-                        // Run JUnit and Mockito tests using Maven
+
                         sh 'mvn test'
                     }
                 }
-        stage("Unit Testing") {
-            steps {
-                sh "mvn test"
-            }
-            post{
-              always{
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                }
-            }
-        }
+
         stage('Sonar test'){
             steps{
                 sh 'mvn clean'
                 sh 'mvn compile'
-                sh 'mvn clean verify sonar:sonar'
+                sh "mvn verify sonar:sonar -Dsonar.login='sonar'"
+
+                //sh 'mvn clean verify sonar:sonar'
             }
         }
         stage('Build Artefact'){
