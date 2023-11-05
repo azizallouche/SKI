@@ -1,28 +1,27 @@
+version: '3.9'
+
 services:
-  db:
-    container_name: mysql
-    image: mysql
-    cap_add:
-      - SYS_NICE
-    restart: always
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:8
+    restart: unless-stopped
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=1
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_DATABASE=SkiStationDB
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: SkiStationDB
     ports:
-      - '3306:3306'
-    volumes:
-      - mysql:/var/lib/mysql
-      - $PWD/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
-  spring_app:
-    container_name: ski
-    image: ski
-    restart: on-failure
+      - "3306:3306"
+
+  springbootapp:
     build: .
     ports:
-      - '8090:8090'
+      - "8090:8090"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/SkiStationDB?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL5Dialect
+
     depends_on:
-      - db
-volumes:
-  mysql:
-    driver: local
+      - mysqldb
