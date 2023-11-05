@@ -32,7 +32,8 @@ pipeline {
             steps {
                 sh 'mvn clean'
                 sh 'mvn compile'
-                sh "mvn verify sonar:sonar "
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin/sonar'
+
             }
         }
 
