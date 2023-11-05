@@ -1,4 +1,4 @@
-package tn.esprit.SkiStationProject.service;
+package tn.esprit.SkiStationProject;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
