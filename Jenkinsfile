@@ -27,15 +27,15 @@ pipeline {
                     }
                 }
 
-        stage('Sonar test'){
-            steps{
+        stage('Sonar test') {
+
+            steps {
                 sh 'mvn clean'
                 sh 'mvn compile'
-                sh "mvn verify sonar:sonar -Dsonar.login='sonar'"
-
-                //sh 'mvn clean verify sonar:sonar'
+                sh "mvn verify sonar:sonar "
             }
         }
+
         stage('Build Artefact'){
             steps{
                 sh 'mvn clean'
