@@ -25,6 +25,13 @@ pipeline {
                         // sh "mvn clean package -DskipTests"
                     }
                 }
+                 stage('Start Docker Containers') {
+                                    steps {
+                                        script {
+                                            sh "docker-compose -f ${dockerComposeFilePath} up -d"
+                                        }
+                                    }
+                                }
                 stage('Run JUnit and Mockito Tests') {
                     steps {
 
@@ -53,13 +60,7 @@ pipeline {
                         sh "mvn clean deploy"
                     }
                 }
-        stage('Start Docker Containers') {
-                    steps {
-                        script {
-                            sh "docker-compose -f ${dockerComposeFilePath} up -d"
-                        }
-                    }
-                }
+
         stage("Build Docker image") {
                     steps {
                         script {
