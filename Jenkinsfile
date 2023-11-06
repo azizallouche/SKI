@@ -55,8 +55,7 @@ stage("Deploy to private registry") {
             def dockerUsername = 'admin'
             def dockerPassword = 'aziz'
 
-            // Access the Docker image name set at the top of the pipeline
-            def dockerImageName = 'YourDockerImageName' // Replace with your actual image name
+            
 
             // Build the Docker image
             sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
