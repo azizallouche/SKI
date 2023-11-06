@@ -52,18 +52,7 @@ pipeline {
                         sh "mvn clean deploy"
                     }
                 }
-        stage('docker push'){
-            steps{
-                script{
-                        sh 'sudo docker login -u mohamedalimzoughi -p dockerhub'
 
-                        sh 'sudo docker tag ski mohamedalimzoughi/gestion-station-ski'
-                        sh 'sudo docker push mohamedalimzoughi/gestion-station-ski'
-                }
-
-            }
-
-          }
         stage("Build Docker image") {
                     steps {
                         script {
