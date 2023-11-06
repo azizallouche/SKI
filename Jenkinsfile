@@ -1,4 +1,8 @@
 pipeline {
+    environment {
+        dockerimagename = "ski"
+    }
+
     agent {
         label 'devops'
     }
