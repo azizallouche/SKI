@@ -51,11 +51,11 @@ stage('SonarQube ') {
 stage("Deploy to private registry") {
     steps {
         script {
-            def nexusRegistryUrl = 'http://127.0.0.1:8081/repository/ski/'
+            def nexusRegistryUrl = '127.0.0.1:8081/repository/ski/'
             def dockerUsername = 'admin'
             def dockerPassword = 'aziz'
 
-            
+
 
             // Build the Docker image
             sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
