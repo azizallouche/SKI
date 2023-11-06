@@ -1,6 +1,7 @@
 pipeline {
     environment {
         dockerImageName = "ski"
+        dockerComposeFilePath = "docker-compose.yaml"
     }
 
     agent {
@@ -52,7 +53,13 @@ pipeline {
                         sh "mvn clean deploy"
                     }
                 }
-
+        stage('Start Docker Containers') {
+                    steps {
+                        script {
+                            sh "docker-compose -f ${dockerComposeFilePath} up -d"
+                        }
+                    }
+                }
         stage("Build Docker image") {
                     steps {
                         script {
