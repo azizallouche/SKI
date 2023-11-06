@@ -49,21 +49,30 @@ stage('SonarQube ') {
                     }
 */
 stage("Deploy to private registry") {
-            steps {
-                script {
+    steps {
+        script {
+            def nexusRegistryUrl = 'http://127.0.0.1:8081/repository/ski/'
+            def dockerUsername = 'admin'
+            def dockerPassword = 'aziz'
 
-                    def nexusRegistryUrl = 'http://127.0.0.1:8081/repository/ski/'
-                    def dockerUsername = 'admin'
-                    def dockerPassword = 'aziz'
+            // Access the Docker image name set at the top of the pipeline
+            def dockerImageName = 'YourDockerImageName' // Replace with your actual image name
 
-                    sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
-                    sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
-                    sh "echo ${dockerPassword} | docker login --username ${dockerUsername} --password ${dockerPassword} ${nexusRegistryUrl}"
-                    sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
-                }
+            // Build the Docker image
+            sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
 
-            }
+            // Tag the Docker image
+            sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
+
+            // Log in to the private registry
+            sh "docker login --username ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
+            sh "echo ${dockerPassword} | docker login --username ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
+
+            // Push the Docker image to the private registry
+            sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
         }
+    }
+}
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
