@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        dockerimagename = "ski"
+        dockerImageName = "ski"
     }
 
     agent {
