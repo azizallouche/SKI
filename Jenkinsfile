@@ -52,11 +52,18 @@ pipeline {
                         sh "mvn clean deploy"
                     }
                 }
-         stage("Build Docker image") {
+
+        stage("Build Docker image") {
                     steps {
                         script {
                             dockerImage = docker.build(dockerImageName)
                         }
+                    }
+                }
+
+                stage("Start app and db") {
+                    steps {
+                        sh "docker-compose up -d"
                     }
                 }
     }
