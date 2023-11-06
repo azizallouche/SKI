@@ -55,10 +55,10 @@ pipeline {
         stage('docker push'){
             steps{
                 script{
-                        sh 'docker login -u mohamedalimzoughi -p dockerhub'
+                        sh 'sudo docker login -u mohamedalimzoughi -p dockerhub'
 
-                        sh 'docker tag ski mohamedalimzoughi/gestion-station-ski'
-                        sh 'docker push mohamedalimzoughi/gestion-station-ski'
+                        sh 'sudo docker tag ski mohamedalimzoughi/gestion-station-ski'
+                        sh 'sudo docker push mohamedalimzoughi/gestion-station-ski'
                 }
 
             }
