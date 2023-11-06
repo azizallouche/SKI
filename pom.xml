@@ -49,12 +49,17 @@
         </dependency>
     </dependencies>
 <distributionManagement>
-         
-<repository>
-<id>deploymentRepo</id>
-<name>Nexus Repository</name>
-<url>http://localhost:8081/repository/maven-releases/</url>
-</repository>
+
+    <repository>
+        <id>deploymentRepo</id>
+        <name>Nexus Repository</name>
+        <url>http://localhost:8081/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+        <id>deploymentSki</id>
+        <name>Nexus Rep</name>
+        <url>http://localhost:8081/repository/ski/</url>
+    </snapshotRepository>
 </distributionManagement>
           <profiles>
         <!-- Prod profile -->
