@@ -3,7 +3,7 @@ version: '3.9'
 services:
   mysqldb:
     container_name: mysqldb
-    image: mysql:8
+    image: mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -12,7 +12,7 @@ services:
       - "3306:3306"
 
   springbootapp:
-    build: .
+    build: ./docker  # Use the correct build context where your Dockerfile is located
     ports:
       - "8090:8090"
     environment:
@@ -22,6 +22,5 @@ services:
       SPRING_JPA_SHOW_SQL: "true"
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL5Dialect
-
     depends_on:
       - mysqldb
