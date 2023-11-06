@@ -51,7 +51,7 @@ stage('SonarQube ') {
 stage("Deploy to private registry") {
     steps {
         script {
-            def nexusRegistryUrl = '172.17.0.2:8082/registry/ski/'
+            def nexusRegistryUrl = '172.20.10.1:8082/'
 
 
 
@@ -63,6 +63,8 @@ stage("Deploy to private registry") {
             sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
 
             // Log in to the private registry
+
+            sh "echo ${dockerPassword} | docker login --username ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
 
             // Push the Docker image to the private registry
             sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
