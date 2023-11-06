@@ -24,17 +24,16 @@ pipeline {
                         sh "mvn --version"
                         // sh "mvn clean package -DskipTests"
                     }
-                }
+                }/*
                  stage('Start Docker Containers') {
                                     steps {
                                         script {
                                             sh "docker-compose -f ${dockerComposeFilePath} up -d"
                                         }
                                     }
-                                }
+                                }*/
                 stage('Run JUnit and Mockito Tests') {
                     steps {
-
                         sh 'mvn test'
                     }
                 }
@@ -60,19 +59,20 @@ pipeline {
                         sh "mvn clean deploy"
                     }
                 }
+        stage('docker push'){
+                    steps{
+                        script{
+                                    sh 'docker login -u mohamedalimzoughi -p dockerhub'
 
-        stage("Build Docker image") {
-                    steps {
-                        script {
-                            dockerImage = docker.build(dockerImageName)
+                                sh 'docker tag ski mohamedalimzoughi/gestion-station-ski'
+                                sh 'docker push mohamedalimzoughi/gestion-station-ski'
                         }
-                    }
-                }
 
-                stage("Start app and db") {
-                    steps {
-                        sh "docker-compose up -d"
                     }
-                }
+
+                  }
+
+
+
     }
 }
