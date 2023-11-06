@@ -16,13 +16,26 @@ services:
       - $PWD/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
   spring_app:
     container_name: ski
-    image: http://127.0.0.1:8081/repository/ski/ski:v143
+    image: http://127.0.0.1:8081/repository/ski/ski:v148
     restart: on-failure
     build: .
     ports:
       - 9091:9091
     depends_on:
       - db
+  nexus:
+    image: sonatype/nexus3
+    expose:
+      - 8081
+      - 8082
+      - 8083
+    ports:
+      - "8082:8082"
+      - "8083:8083"
+      - "8081:8081"
+    volumes:
+      - ./volume:/nexus-data
+    restart: always
 volumes:
   mysql:
     driver: local
