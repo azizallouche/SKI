@@ -27,7 +27,7 @@ pipeline {
                     }
                 }
 
-        /*stage('Sonar test') {
+        stage('Sonar test') {
 
             steps {
                 sh 'mvn clean'
@@ -35,7 +35,7 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
 
             }
-        }*/
+        }
 
         stage('Build Artefact'){
             steps{
