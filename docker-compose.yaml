@@ -16,7 +16,7 @@ services:
       - $PWD/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
   spring_app:
     container_name: ski
-    image: http://127.0.0.1:8081/repository/ski/ski:v148
+    image: http://172.17.0.1:8082/repository/ski/ski:v149
     restart: on-failure
     build: .
     ports:
