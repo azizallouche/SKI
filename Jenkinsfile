@@ -51,7 +51,7 @@ stage('SonarQube ') {
 stage("Deploy to private registry") {
     steps {
         script {
-            def nexusRegistryUrl = '172.17.0.1:8082/'
+            def nexusRegistryUrl = '172.17.0.2:8082/registry/ski'
 
 
 
