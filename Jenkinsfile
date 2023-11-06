@@ -64,8 +64,6 @@ stage("Deploy to private registry") {
 
             // Log in to the private registry
 
-            sh "echo ${dockerPassword} | docker login --username ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
-
             // Push the Docker image to the private registry
             sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
         }
