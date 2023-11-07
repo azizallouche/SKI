@@ -12,10 +12,10 @@ services:
       - "3306:3306"
 
   springbootapp:
-    build: .  
+    build: .  # Use the correct build context where your Dockerfile is located
     image: ski_station_project
     ports:
-      - "9090:9090"
+      - "8090:8090"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/SkiStationDB?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
@@ -25,3 +25,17 @@ services:
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL5Dialect
     depends_on:
       - mysqldb
+
+  nexus:
+    container_name: nexus
+    image: sonatype/nexus3
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
