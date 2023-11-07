@@ -13,6 +13,7 @@ services:
 
   springbootapp:
     build: .  # Use the correct build context where your Dockerfile is located
+    image: ski_station_project
     ports:
       - "8090:8090"
     environment:
