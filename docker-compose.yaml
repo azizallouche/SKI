@@ -12,7 +12,7 @@ services:
       - "3306:3306"
 
   springbootapp:
-    build: .  # Use the correct build context where your Dockerfile is located
+    build: .
     image: ski_station_project
     ports:
       - "8090:8090"
@@ -26,29 +26,3 @@ services:
     depends_on:
       - mysqldb
 
-  sonarqube:
-    image: sonarqube:8.9.7-community
-    container_name: your_sonarqube_container_name
-    ports:
-      - "9000:9000"
-    networks:
-      - sonarqube_network
-    environment:
-      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube_db:5432/sonar
-      - SONARQUBE_JDBC_USERNAME=sonar
-      - SONARQUBE_JDBC_PASSWORD=sonar
-
-  nexus:
-    image: sonatype/nexus3
-    container_name: nexus
-    ports:
-      - "8081:8081"
-    networks:
-      - nexus_network
-
-networks:
-  sonarqube_network:
-  nexus_network:
-
-volumes:
-  nexus_data:
