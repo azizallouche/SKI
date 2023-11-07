@@ -12,7 +12,7 @@ services:
       - "3306:3306"
 
   springbootapp:
-    build: ./docker  # Use the correct build context where your Dockerfile is located
+    build: .  # Use the correct build context where your Dockerfile is located
     ports:
       - "8090:8090"
     environment:
