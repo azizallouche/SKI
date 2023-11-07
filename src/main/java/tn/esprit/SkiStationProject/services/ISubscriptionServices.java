@@ -9,7 +9,9 @@ import tn.esprit.SkiStationProject.entities.enums.TypeSubscription;
 
 public interface ISubscriptionServices {
 
-	Subscription addSubscription(Subscription subscription);
+    List<Subscription> retrieveAllSubscriptions();
+
+    Subscription addSubscription(Subscription subscription);
 
 	Subscription updateSubscription(Subscription subscription);
 

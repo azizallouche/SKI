@@ -108,3 +108,7 @@ Esrc/test/java/tn/esprit/SkiStationProject/CourseServicesImplTest.java,7\6\76be
 Ksrc/main/java/tn/esprit/SkiStationProject/services/IInstructorServices.java,0\b\0b84adcb907497933f67f7efb09076482d716363
 z
 Jsrc/main/java/tn/esprit/SkiStationProject/services/CourseServicesImpl.java,2\1\2149bd3d402fde3f4ece6385160bb51eb8ec6ae1
+w
+Gsrc/test/java/tn/esprit/SkiStationProject/SubscriptionJUNITImpTest.java,4\9\49553b7b2b097073cb37020421a2f0c5e4f5d969
+v
+Fsrc/test/java/tn/esprit/SkiStationProject/SubscriptionMockImpTest.java,4\a\4ad08231a0484a78f474cf709994cb52c74ff05d
