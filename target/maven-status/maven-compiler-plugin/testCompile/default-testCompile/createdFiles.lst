@@ -1,5 +1,3 @@
-tn\esprit\SkiStationProject\CourseMockTest.class
-tn\esprit\SkiStationProject\InstructorServicesImplTest.class
-tn\esprit\SkiStationProject\CourseJUNITImpTest.class
-tn\esprit\SkiStationProject\CourseServicesImplTest.class
 tn\esprit\SkiStationProject\SkiStationProjectApplicationTests.class
+tn\esprit\SkiStationProject\SubscriptionJUNITImpTest.class
+tn\esprit\SkiStationProject\SubscriptionMockImpTest.class
