@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: SkiStationDB
+    ports:
+      - "3306:3306"
+
+  springbootapp:
+    build: .  # Use the correct build context where your Dockerfile is located
+    image: ski_station_project
+    ports:
+      - "8090:8090"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/SkiStationDB?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL5Dialect
+    depends_on:
+      - mysqldb

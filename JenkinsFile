@@ -1,0 +1,56 @@
+pipeline {
+    agent {
+        label 'agent'
+    }
+
+    stages {
+        stage('Checkout from GitHub') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: 'Louay']], userRemoteConfigs: [[url: 'https://github.com/azizallouche/SKI.git']]])
+            }
+        }
+        stage("Unit Testing") {
+            steps {
+                sh "mvn test"
+            }
+            post{
+              always{
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=Louay1998'
+            }
+        }
+        stage('Build Artefact'){
+            steps{
+                sh 'mvn clean'
+                sh 'mvn package -Dmaven.test.skip=true -P test-coverage'
+            }
+        }
+        stage('Build docker image'){
+            steps{
+                script{
+                    sh 'docker build -t louay/devops-integration .'
+                }
+            }
+        }
+        stage('Deploy Nexus'){
+            steps{
+                sh 'mvn deploy'
+            }
+        }
+    }
+    post {
+        always {
+            publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target/sonar', reportFiles: 'index.html', reportName: 'SonarQube Analysis'])
+        }
+    }
+}
