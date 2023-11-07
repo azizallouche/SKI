@@ -25,17 +25,3 @@ services:
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL5Dialect
     depends_on:
       - mysqldb
-
-  nexus:
-    container_name: nexus
-    image: sonatype/nexus3
-    restart: unless-stopped
-    ports:
-      - "8081:8081"
-
-  sonarqube:
-    container_name: sonarqube
-    image: sonarqube
-    restart: unless-stopped
-    ports:
-      - "9000:9000"
