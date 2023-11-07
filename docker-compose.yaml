@@ -26,16 +26,4 @@ services:
     depends_on:
       - mysqldb
 
-   nexus:
-    container_name: nexus
-    image: sonatype/nexus3
-    restart: unless-stopped
-    ports:
-      - "8082:8082"
-
-  sonarqube:
-    container_name: sonarqube
-    image: sonarqube
-    restart: unless-stopped
-    ports:
-      - "9001:9001"
+  
