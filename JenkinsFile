@@ -44,7 +44,7 @@ pipeline {
         }
         stage('Deploy Nexus'){
             steps{
-                sh 'mvn deploy'
+                sh 'mvn clean deploy'
             }
         }
     }
