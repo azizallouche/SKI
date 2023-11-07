@@ -31,11 +31,11 @@ services:
     image: sonatype/nexus3
     restart: unless-stopped
     ports:
-      - "8081:8081"
+      - "8082:8082"
 
   sonarqube:
     container_name: sonarqube
     image: sonarqube
     restart: unless-stopped
     ports:
-      - "9000:9000"
+      - "9001:9001"
