@@ -54,21 +54,6 @@ pipeline {
                 sh "mvn clean deploy"
             }
         }
-        stage('Grafana') {
-            steps {
-                script {
-                    def grafanaURL = 'http://192.168.33.10:3000'  // Base Grafana URL
-                    def apiKey = 'glsa_yA4S6rXWN4JlcZFS1ihbWQsmheP3KU6s_5b5fc47d'  // If authentication is required
-                    def dashboardId = 'jenkins'  // Replace with the actual dashboard ID or slug
-
-
-                    sh """
-                        curl -X POST http://192.168.33.10:3000/api/dashboards/jenkins/refresh -H "Authorization: Bearer glsa_yA4S6rXWN4JlcZFS1ihbWQsmheP3KU6s_5b5fc47d"
-
-                    """
-                }
-            }
-        }
 
          stage('Deploy Image to DockerHub'){
                             steps{
@@ -87,6 +72,21 @@ pipeline {
                 sh "sudo docker-compose -f ${dockerComposeFilePath} up -d"
             }
         }
+                stage('Grafana') {
+                    steps {
+                        script {
+                            def grafanaURL = 'http://192.168.33.10:3000'  // Base Grafana URL
+                            def apiKey = 'glsa_yA4S6rXWN4JlcZFS1ihbWQsmheP3KU6s_5b5fc47d'  // If authentication is required
+                            def dashboardId = 'jenkins'  // Replace with the actual dashboard ID or slug
+
+
+                            sh """
+                                curl -X POST http://192.168.33.10:3000/api/dashboards/jenkins/refresh -H "Authorization: Bearer glsa_yA4S6rXWN4JlcZFS1ihbWQsmheP3KU6s_5b5fc47d"
+
+                            """
+                        }
+                    }
+                }
     }
 }
 
