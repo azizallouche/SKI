@@ -14,8 +14,6 @@ C
 docker-compose.yaml,e\f\ef8def03dc8f162799089e9b5f4321201c8810d5
 4
 mvnw,5\d\5d837c4ed85ecaaf932c506e80ff5d7b9f3d590d
-€
-Psrc/test/java/tn/esprit/SkiStationProject/SkiStationProjectApplicationTests.java,3\2\32612529f2bf390abf4e53db587b04cb1c53ebc8
 m
 =src/main/java/tn/esprit/SkiStationProject/entities/Skier.java,4\3\4313f2dfe93be77b6ebc78fadb98aa31bd804ea8
 {
