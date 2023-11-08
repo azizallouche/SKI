@@ -44,7 +44,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Building the Docker Image"
-                sh "docker build -t ${dockerImageName} ."
+                sh "sudo docker build -t ${dockerImageName} ."
             }
         }
 
@@ -69,7 +69,7 @@ pipeline {
         stage('Start Containers') {
             steps {
                 echo "Starting the Spring Application and Database Containers"
-                sh "docker-compose -f ${dockerComposeFilePath} up -d"
+                sh "sudo docker-compose -f ${dockerComposeFilePath} up -d"
             }
         }
     }
