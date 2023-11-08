@@ -63,8 +63,8 @@ pipeline {
 
 
                     sh """
-                        curl -X POST ${grafanaURL}/api/dashboards/${dashboardId}/refresh
-                        -H "Authorization: Bearer ${apiKey}"
+                        curl -X POST http://192.168.33.10:3000/api/dashboards/jenkins/refresh -H "Authorization: Bearer glsa_yA4S6rXWN4JlcZFS1ihbWQsmheP3KU6s_5b5fc47d"
+
                     """
                 }
             }
