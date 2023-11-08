@@ -23,7 +23,7 @@ public class SubscriptionJUNITImpTest {
     private SubscriptionServicesImpl subscriptionServices;
 
     @Test
-    public void testRetrieveAllSubscriptions() {
+     void testRetrieveAllSubscriptions() {
         Subscription subscription1 = new Subscription();
         subscription1.setStartDate(LocalDate.of(2023, 11, 6));
         subscription1.setEndDate(LocalDate.of(2023, 12, 6));
@@ -59,7 +59,7 @@ public class SubscriptionJUNITImpTest {
     }
 
     @Test
-    public void testAddSubscription() {
+     void testAddSubscription() {
         Subscription subscription3 = new Subscription();
         subscription3.setStartDate(LocalDate.of(2023, 7, 7));
         subscription3.setEndDate(LocalDate.of(2023, 8, 8));
@@ -80,7 +80,7 @@ public class SubscriptionJUNITImpTest {
     }
 
     @Test
-    public void testUpdateSubscription() {
+     void testUpdateSubscription() {
         Subscription subscription4 = new Subscription();
         subscription4.setStartDate(LocalDate.of(2023, 3, 3));
         subscription4.setEndDate(LocalDate.of(2023, 4, 4));
@@ -102,4 +102,5 @@ public class SubscriptionJUNITImpTest {
 
         System.out.println("Test 'testUpdateSubscription' completed successfully.");
     }
+
 }

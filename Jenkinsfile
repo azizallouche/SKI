@@ -22,7 +22,7 @@ pipeline {
                         sh "chmod +x ./mvnw"
                         //sh "mvn clean package -Pprod -X"
                         sh "mvn --version"
-                        // sh "mvn clean package -DskipTests"
+                        sh "mvn clean package -DskipTests"
                     }
                 }/*
                  stage('Start Docker Containers') {

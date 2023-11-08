@@ -10,16 +10,10 @@ n
 :
 
 Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
-q
-Asrc/test/java/tn/esprit/SkiStationProject/CourseJUNITImpTest.java,9\c\9cda3640d9c1ed03a6071f5619fc8c08946e7ede
 C
 docker-compose.yaml,e\f\ef8def03dc8f162799089e9b5f4321201c8810d5
-m
-=src/test/java/tn/esprit/SkiStationProject/CourseMockTest.java,d\f\df07a73cce0e22114e88a9a12ee5c8df0d07ef7e
 4
 mvnw,5\d\5d837c4ed85ecaaf932c506e80ff5d7b9f3d590d
-y
-Isrc/test/java/tn/esprit/SkiStationProject/InstructorServicesImplTest.java,0\5\056db150f96dc27fd1e286d499591b55d124539e
 €
 Psrc/test/java/tn/esprit/SkiStationProject/SkiStationProjectApplicationTests.java,3\2\32612529f2bf390abf4e53db587b04cb1c53ebc8
 m
@@ -102,8 +96,6 @@ r
 Bsrc/main/java/tn/esprit/SkiStationProject/entities/Instructor.java,9\4\947dbcf34cfc63d20f58499bd0f2725b6dcb5dcc
 m
 =src/main/java/tn/esprit/SkiStationProject/entities/Piste.java,2\0\20b809d1528f4d33645f0f524dbf4581a58b56a3
-u
-Esrc/test/java/tn/esprit/SkiStationProject/CourseServicesImplTest.java,7\6\76be5d200fc3ecdf5ba66f48683ae1b6b10b6314
 {
 Ksrc/main/java/tn/esprit/SkiStationProject/services/IInstructorServices.java,0\b\0b84adcb907497933f67f7efb09076482d716363
 z

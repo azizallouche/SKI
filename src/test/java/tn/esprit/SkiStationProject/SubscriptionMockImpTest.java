@@ -1,5 +1,6 @@
 package tn.esprit.SkiStationProject;
 
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -27,7 +28,7 @@ public class SubscriptionMockImpTest {
 
     @Mock
     private SubscriptionRepository subscriptionRepository;
-
+    @Test
     public void shouldRetrieveSubscriptionById() {
         // Create sample courses
         Subscription subscription1 = new Subscription(LocalDate.of(2023, 11, 6), LocalDate.of(2023, 12, 6), 220.0f, TypeSubscription.MONTHLY);
@@ -46,7 +47,7 @@ public class SubscriptionMockImpTest {
         // Print a success message
         System.out.println("shouldRetrieveSubscriptionById succeeded!");
     }
-
+    @Test
     public void shouldRetrieveSubscriptionByType() {
         List<Subscription> subscriptions = new ArrayList<>();
         subscriptions.add(new Subscription(LocalDate.of(2023, 11, 6), LocalDate.of(2023, 12, 6), 220.0f, TypeSubscription.MONTHLY));
@@ -61,7 +62,7 @@ public class SubscriptionMockImpTest {
         // Print a success message
         System.out.println("shouldRetrieveSubscriptionByType succeeded!");
     }
-
+    @Test
     public void shouldRetrieveSubscriptionsByDates() {
         List<Subscription> subscriptions = new ArrayList<>();
         subscriptions.add(new Subscription(LocalDate.of(2023, 11, 6), LocalDate.of(2023, 12, 6), 220.0f, TypeSubscription.MONTHLY));
