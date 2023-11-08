@@ -9,70 +9,69 @@ pipeline {
     }
 
     stages {
-
-        stage ('GIT') {
-                            steps {
-                               echo "Getting Project from Git";
-                                git branch: 'Dali',
-                                    url: 'https://github.com/azizallouche/SKI'
-                            }
-                        }
-        stage("Build") {
-                    steps {
-                        sh "chmod +x ./mvnw"
-                        //sh "mvn clean package -Pprod -X"
-                        sh "mvn --version"
-                        sh "mvn clean package -DskipTests"
-                    }
-                }/*
-                 stage('Start Docker Containers') {
-                                    steps {
-                                        script {
-                                            sh "docker-compose -f ${dockerComposeFilePath} up -d"
-                                        }
-                                    }
-                                }*/
-                stage('Run JUnit and Mockito Tests') {
-                    steps {
-                        sh 'mvn test'
-                    }
-                }
-
-        stage('Sonar test') {
-
+        stage('Git Checkout') {
             steps {
+                echo "Getting Project from Git";
+                git branch: 'Dali',
+                url: 'https://github.com/azizallouche/SKI'
+            }
+        }
+
+        stage('Unit Testing JUnit / Mockito') {
+            steps {
+                echo "Running Unit Tests with JUnit or Mockito"
+                sh 'mvn test'
+            }
+        }
+
+        stage('SonarQube Testing') {
+            steps {
+                echo "Running Static Code Analysis with SonarQube"
                 sh 'mvn clean'
                 sh 'mvn compile'
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
-
             }
         }
 
-        stage('Build Artefact'){
-            steps{
-                sh 'mvn clean'
-                sh 'mvn package -Dmaven.test.skip=true -P test-coverage'
+        stage('Build Artifact') {
+            steps {
+                echo "Building the Artifact (.jar) using Maven"
+                sh 'chmod +x ./mvnw'
+                sh 'mvn clean package -DskipTests'
             }
         }
-        stage("Nexus") {
-                    steps {
-                        sh "mvn clean deploy"
-                    }
-                }
-        stage('docker push'){
-                    steps{
-                        script{
-                                sh 'sudo docker login -u mohamedalimzoughi -p dockerhub'
 
-                                sh 'sudo docker tag ski mohamedalimzoughi/gestion-station-ski'
-                                sh 'sudo docker push mohamedalimzoughi/gestion-station-ski'
-                        }
+        stage('Build Docker Image') {
+            steps {
+                echo "Building the Docker Image"
+                sh "docker build -t ${dockerImageName} ."
+            }
+        }
 
-                    }
+        stage('Deploy Artifact to Nexus') {
+            steps {
+                echo "Deploying the Artifact to Nexus"
+                sh "mvn clean deploy"
+            }
+        }
 
-                  }
+         stage('Deploy Image to DockerHub'){
+                            steps{
+                            echo "Deploying the Docker Image to DockerHub"
+                                script{
+                                        sh 'sudo docker login -u mohamedalimzoughi -p dockerhub'
+                                        sh 'sudo docker tag ski mohamedalimzoughi/gestion-station-ski'
+                                        sh 'sudo docker push mohamedalimzoughi/gestion-station-ski'
+                                }
+                            }
+                          }
 
-
-
+        stage('Start Containers') {
+            steps {
+                echo "Starting the Spring Application and Database Containers"
+                sh "docker-compose -f ${dockerComposeFilePath} up -d"
+            }
+        }
     }
 }
+
