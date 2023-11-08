@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 @ActiveProfiles("test") // Use the "test" profile to configure the H2 in-memory database
 @Transactional // Rollback transactions after each test
-public class SubscriptionJUNITImpTest {
+class SubscriptionJUNITImpTest {
     @Autowired
     private SubscriptionServicesImpl subscriptionServices;
 
