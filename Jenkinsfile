@@ -66,7 +66,7 @@ stage('Deploy Image to Nexus') {
 
             sh "sudo docker build -t ${dockerImageName}:${dockerTag} ."
             sh "sudo docker tag ${dockerImageName}:${dockerTag} ${nexusRegistryUrl}${dockerImageName}:${dockerTag}"
-            sh "sudo docker push ${nexusRegistryUrl}/${dockerImageName}:${dockerTag}"
+            sh "sudo docker push ${nexusRegistryUrl}${dockerImageName}:${dockerTag}"
         }
     }
 }
