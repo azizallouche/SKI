@@ -64,7 +64,7 @@ pipeline {
 
                     sh "sudo docker build -t ${dockerImageName}:${dockerTag} ."
                     sh "sudo docker tag ${dockerImageName}:${dockerTag} ${nexusRegistryUrl}${dockerImageName}:${dockerTag}"
-                    sh "sudo docker push https://192.168.33.10:8081/repository/ahmed_mohsen/ski:latest"
+                    sh "sudo docker push 192.168.33.10:8081/repository/ahmed_mohsen/ski:latest"
                 }
             }
         }
