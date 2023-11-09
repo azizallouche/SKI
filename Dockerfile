@@ -6,3 +6,5 @@ RUN wget -O ski.jar http://192.168.33.10:8081/repository/maven-releases/tn/espri
 # Set the entrypoint and expose the necessary port
 ENTRYPOINT ["java", "-jar", "ski.jar"]
 EXPOSE 8090
+
+# this is a test for push with webhooks
