@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="tn.esprit.SkiStationProject.SkiStationProjectApplicationTests" time="11.761" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="tn.esprit.SkiStationProject.services.SkierServiceImplTest" time="0.224" tests="8" errors="5" skipped="0" failures="1">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -58,5 +58,36 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="contextLoads" classname="tn.esprit.SkiStationProject.SkiStationProjectApplicationTests" time="0.379"/>
+  <testcase name="testRetrieveSkiersBySubscriptionType" classname="tn.esprit.SkiStationProject.services.SkierServiceImplTest" time="0.12"/>
+  <testcase name="testAssignSkierToPiste" classname="tn.esprit.SkiStationProject.services.SkierServiceImplTest" time="0.046">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAssignSkierToPiste(SkierServiceImplTest.java:117)
+</error>
+  </testcase>
+  <testcase name="testAssignSkierToSubscription" classname="tn.esprit.SkiStationProject.services.SkierServiceImplTest" time="0.001">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAssignSkierToSubscription(SkierServiceImplTest.java:75)
+</error>
+  </testcase>
+  <testcase name="testRemoveSkier" classname="tn.esprit.SkiStationProject.services.SkierServiceImplTest" time="0.044">
+    <failure message="expected: &lt;2&gt; but was: &lt;0&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <2> but was: <0>
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testRemoveSkier(SkierServiceImplTest.java:103)
+]]></failure>
+  </testcase>
+  <testcase name="testRetrieveSkier" classname="tn.esprit.SkiStationProject.services.SkierServiceImplTest" time="0.001">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testRetrieveSkier(SkierServiceImplTest.java:110)
+</error>
+  </testcase>
+  <testcase name="testAddSkier" classname="tn.esprit.SkiStationProject.services.SkierServiceImplTest" time="0.001">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAddSkier(SkierServiceImplTest.java:62)
+</error>
+  </testcase>
+  <testcase name="testAddSkierAndAssignToCourse" classname="tn.esprit.SkiStationProject.services.SkierServiceImplTest" time="0.008">
+    <error type="java.util.NoSuchElementException">java.util.NoSuchElementException
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAddSkierAndAssignToCourse(SkierServiceImplTest.java:93)
+</error>
+  </testcase>
+  <testcase name="testRetrieveAllSkiers" classname="tn.esprit.SkiStationProject.services.SkierServiceImplTest" time="0.001"/>
 </testsuite>
