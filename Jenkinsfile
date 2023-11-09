@@ -62,10 +62,10 @@ pipeline {
                                def dockerUsername = 'admin'
                                def dockerPassword = 'nexus'
 
-                               sh "docker build -t ${dockerImageName}:${dockerTag} ."
-                               sh "docker tag ${dockerImageName}:${dockerTag} ${nexusRegistryUrl}${dockerImageName}:${dockerTag}"
-                               sh "docker login -u ${dockerUsername} -p ${dockerPassword} ${nexusRegistryUrl}"
-                               sh "docker push ${nexusRegistryUrl}/${dockerImageName}:${dockerTag}"
+                               sh "sudo docker build -t ${dockerImageName}:${dockerTag} ."
+                               sh "sudo docker tag ${dockerImageName}:${dockerTag} ${nexusRegistryUrl}${dockerImageName}:${dockerTag}"
+                               sh "sudo docker login -u ${dockerUsername} -p ${dockerPassword} ${nexusRegistryUrl}"
+                               sh "sudo docker push ${nexusRegistryUrl}/${dockerImageName}:${dockerTag}"
                 }
             }
         }
