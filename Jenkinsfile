@@ -47,11 +47,11 @@ stage('SonarQube ') {
                                      sh "docker push  3alouch/ski:$DOCKER_IMAGE_TAG"
                                           }
                     }
-/*
+
 stage("Deploy to private registry") {
     steps {
         script {
-            def nexusRegistryUrl = '172.20.10.1:8082/'
+            def nexusRegistryUrl = 'https://e912-197-16-55-224.ngrok-free.app/repository/ski/'
 
 
 
@@ -70,7 +70,7 @@ stage("Deploy to private registry") {
             sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
         }
     }
-}*/
+}
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
