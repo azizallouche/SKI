@@ -59,14 +59,13 @@ pipeline {
 stage('Deploy Image to Nexus') {
     steps {
         script {
-            def dockerTag = 'latest'
             def nexusRegistryUrl = '192.168.33.10:8081/repository/ahmed_mohsen/'
             def dockerUsername = 'admin'
             def dockerPassword = 'nexus'
 
-            sh "sudo docker build -t ${dockerImageName}:${dockerTag} ."
-            sh "sudo docker tag ${dockerImageName}:${dockerTag} ${nexusRegistryUrl}${dockerImageName}:${dockerTag}"
-            sh "sudo docker push ${nexusRegistryUrl}${dockerImageName}:${dockerTag}"
+            sh "sudo docker build -t ${dockerImageName} ."
+            sh "sudo docker tag ${dockerImageName}:${dockerTag} ${nexusRegistryUrl}${dockerImageName}"
+            sh "sudo docker push ${nexusRegistryUrl}${dockerImageName}"
         }
     }
 }
