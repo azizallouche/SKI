@@ -2,6 +2,9 @@ pipeline {
     environment {
         dockerImageName = "ski"
         DOCKER_IMAGE_TAG = "v${BUILD_NUMBER}" // Using Jenkins BUILD_NUMBER as the tag
+        NEXUS_BASE_URL = "http://localhost:8081/repository"
+                NEXUS_REPOSITORY = "maven-releases"
+                NEXUS_ARTIFACT_VERSION = "1.0"
     }
     agent any
     stages {
@@ -32,13 +35,18 @@ stage('SonarQube ') {
                    }
              }
 
-        stage("Build Docker image") {
-            steps {
-                script {
-                    sh 'docker build -t $dockerImageName:$DOCKER_IMAGE_TAG -f Dockerfile ./'
+         stage("Build Docker image") {
+                    steps {
+                        script {
+                            // Build Docker image using Maven to fetch the JAR from Nexus
+                            sh "docker build \
+                                --build-arg NEXUS_BASE_URL=${NEXUS_BASE_URL} \
+                                --build-arg NEXUS_REPOSITORY=${NEXUS_REPOSITORY} \
+                                --build-arg NEXUS_ARTIFACT_VERSION=${NEXUS_ARTIFACT_VERSION} \
+                                -t ${dockerImageName}:${DOCKER_IMAGE_TAG} ."
+                        }
+                    }
                 }
-            }
-        }
          stage('dockerhub') {
                                           steps {
 
@@ -48,29 +56,6 @@ stage('SonarQube ') {
                                           }
                     }
 
-stage("Deploy to private registry") {
-    steps {
-        script {
-            def nexusRegistryUrl = 'https://e912-197-16-55-224.ngrok-free.app/repository/ski/'
-
-
-
-
-            // Build the Docker image
-            sh "docker build -t ski:latest ."
-
-            // Tag the Docker image
-            sh "docker tag ski:latest e912-197-16-55-224.ngrok-free.app/repository/ski/ski:latest"
-
-            // Log in to the private registry
-
-            sh "echo ${dockerPassword} | docker login -u admin -p nexus e912-197-16-55-224.ngrok-free.app/repository/ski/ski:latest"
-
-            // Push the Docker image to the private registry
-            sh "docker push e912-197-16-55-224.ngrok-free.app/repository/ski/ski:latest"
-        }
-    }
-}
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
