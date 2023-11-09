@@ -8,14 +8,14 @@ pipeline {
         stage('Git checkout your branch') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: 'nada']], userRemoteConfigs: [[url: 'https://github.com/azizallouche/SKI.git']]])
-                 sh "docker stop nexus"
+                 //sh "docker stop nexus"
             }
         }
 
         stage('Unit Testing: Run JUnit and Mockito Tests') {
             steps {
                 sh 'mvn test'
-                sh "docker start sonar"
+                //sh "docker start sonar"
 
             }
         }
@@ -23,7 +23,9 @@ pipeline {
         stage('SRC Analysis Testing: Run static tests with SonarQube') {
             steps {
                 script {
+                    
                     sh "mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
+                    
                     sh "docker stop sonar"
                     sh "docker start nexus"
                 }
