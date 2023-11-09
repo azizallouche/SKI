@@ -1,16 +1,31 @@
 package tn.esprit.SkiStationProject.services;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.transaction.Transactional;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.TestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import tn.esprit.SkiStationProject.entities.Course;
 import tn.esprit.SkiStationProject.entities.Piste;
 import tn.esprit.SkiStationProject.entities.Registration;
 import tn.esprit.SkiStationProject.entities.Skier;
 import tn.esprit.SkiStationProject.entities.Subscription;
+import tn.esprit.SkiStationProject.entities.enums.Support;
+import tn.esprit.SkiStationProject.entities.enums.TypeCourse;
 import tn.esprit.SkiStationProject.entities.enums.TypeSubscription;
 import tn.esprit.SkiStationProject.repositories.CourseRepository;
 import tn.esprit.SkiStationProject.repositories.PisteRepository;
@@ -18,95 +33,112 @@ import tn.esprit.SkiStationProject.repositories.RegistrationRepository;
 import tn.esprit.SkiStationProject.repositories.SkierRepository;
 import tn.esprit.SkiStationProject.repositories.SubscriptionRepository;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@TestMethodOrder(OrderAnnotation.class)
 public class SkierServiceImplTest {
 
-    @Mock
-    private SkierRepository skierRepository;
+    @Autowired
+    SkierRepository skierRepository;
 
-    @Mock
-    private PisteRepository pisteRepository;
+    @Autowired
+    PisteRepository pisteRepository;
 
-    @Mock
-    private CourseRepository courseRepository;
+    @Autowired
+    CourseRepository courseRepository;
 
-    @Mock
-    private RegistrationRepository registrationRepository;
+    @Autowired
+    RegistrationRepository registrationRepository;
 
-    @Mock
-    private SubscriptionRepository subscriptionRepository;
+    @Autowired
+    SubscriptionRepository subscriptionRepository;
 
-    @InjectMocks
-    private SkierServicesImpl skierServices;
+    @Autowired
+    SkierServicesImpl skierServices;
 
     @Test
+    @Order(1)
     public void testRetrieveAllSkiers() {
         List<Skier> skiers = skierServices.retrieveAllSkiers();
         assertEquals(0, skiers.size()); 
     }
 
     @Test
-    @Order(1)
-    public void testAddSkier() {
-        Skier skier = new Skier("Louay", "Guetat", LocalDate.of(1998, 03, 26), "Tunis", null, null, null);
-        Skier savedSkier = skierServices.addSkier(skier);
-
-        Skier skierToRemove = new Skier("Ahmed", "Mohsen", LocalDate.of(1998, 03, 26), "Egypte", null, null, null);
-        skierServices.addSkier(skierToRemove);
-
-        assertEquals(1L, savedSkier.getId());
-    }
-
-    @Test
     @Order(2)
-    public void testAssignSkierToSubscription() {
-        Subscription subscription = new Subscription(LocalDate.of(2023, 11, 10), LocalDate.of(2024, 11, 9), 600F, TypeSubscription.ANNUAL);
-        subscriptionRepository.save(subscription);
+    public void testAddSkier() {
+        Subscription subscription = new Subscription();
+        subscription.setStartDate(LocalDate.of(2023, 11, 10));
+        subscription.setTypeSub(TypeSubscription.ANNUAL);
 
-        Skier skier = skierServices.assignSkierToSubscription(1L, 1L);
+        Skier skier = new Skier();
+        skier.setFirstName("Louay");
+        skier.setLastName("Guetat");
+        skier.setSubscription(subscription);
+        skier = skierServices.addSkier(skier);
 
-        assertEquals(skier.getSubscription().getId(), subscription.getId());
+        assertNotNull(skier.getId());
     }
+
 
     @Test
     @Order(3)
-    public void testAddSkierAndAssignToCourse() {
-        Skier skier = new Skier();
-        skier.setRegistrations(new HashSet<>());
-
-        Course course = new Course();
-        Long numCourse = 1L;
-
-        when(skierRepository.save(skier)).thenReturn(skier);
-        when(courseRepository.findById(numCourse)).thenReturn(Optional.of(course));
-
-        Skier savedSkier = skierServices.addSkierAndAssignToCourse(skier, numCourse);
-
-        assertEquals(course, savedSkier.getRegistrations().iterator().next().getCourse());
-        assertEquals(skier, savedSkier.getRegistrations().iterator().next().getSkier());
-
-        verify(registrationRepository, times(1)).save(any(Registration.class));         
+    public void testAssignSkierToSubscription() {
+        Subscription subscription = new Subscription(LocalDate.of(2023, 11, 10), LocalDate.of(2024, 11, 9), 600F, TypeSubscription.ANNUAL);
+        subscription = subscriptionRepository.save(subscription);
+    
+        Skier skier = skierServices.assignSkierToSubscription(1L, 1L);
+    
+        assertEquals(1L, skier.getSubscription().getId());
     }
 
     @Test
     @Order(4)
+    public void testAddSkierAndAssignToCourse() {
+        Subscription subscription = new Subscription();
+        subscription.setStartDate(LocalDate.of(2023, 11, 10));
+        subscription.setTypeSub(TypeSubscription.ANNUAL);
+
+        Skier skier = new Skier();
+        skier.setFirstName("Louay");
+        skier.setLastName("Guetat");
+        skier.setSubscription(subscription);
+
+        Registration registration = new Registration(4, null, null);
+        registration = registrationRepository.save(registration);
+        HashSet<Registration> regHashSet = new HashSet<>();
+        regHashSet.add(registration);
+
+        skier.setRegistrations(regHashSet);
+
+        Course course = new Course();
+        course = courseRepository.save(course);
+
+        Skier savedSkier = skierServices.addSkierAndAssignToCourse(skier, 1L);
+
+        boolean found = false;
+        for (Registration r : savedSkier.getRegistrations()) {
+            System.out.println("Hello "+r.getCourse().getId());
+            if (r.getCourse().getId() == course.getId()) {
+                found = true;
+                break;
+            }
+        }
+
+        assertTrue(found);    
+    }
+
+    @Test
+    @Order(5)
     public void testRemoveSkier() {
-        skierServices.removeSkier(2L);
+        Skier skier = new Skier();
+        skierRepository.save(skier);
+
+        skierServices.removeSkier(3L);
 
         assertEquals(2, skierServices.retrieveAllSkiers().size());
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     public void testRetrieveSkier() {
         Skier skier = skierServices.retrieveSkier(1L);
 
@@ -114,21 +146,24 @@ public class SkierServiceImplTest {
     }
 
     @Test
-    @Order(6)
+    @Order(7)
+    @org.springframework.transaction.annotation.Transactional
     public void testAssignSkierToPiste() {
         Piste piste = new Piste();
         pisteRepository.save(piste);
-        Skier skier = skierServices.assignSkierToPiste(1L,1L);
+
+        skierServices.assignSkierToPiste(1L,1L);
+        Skier skier = skierRepository.findById(1L).orElse(null);
 
         assertEquals(1, skier.getPistes().size());
     }
 
     @Test
-    @Order(7)
+    @Order(8)
     public void testRetrieveSkiersBySubscriptionType() {
         List<Skier> skiers = skierServices.retrieveSkiersBySubscriptionType(TypeSubscription.ANNUAL);
 
-        assertEquals(1, skiers.size());
+        assertEquals(2, skiers.size());
     }
 
 }
