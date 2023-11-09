@@ -39,7 +39,7 @@ stage('SonarQube ') {
                 }
             }
         }
-        /* stage('dockerhub') {
+         stage('dockerhub') {
                                           steps {
 
                                      sh "docker login -u 3alouch -p 191JMT3797"
@@ -47,7 +47,7 @@ stage('SonarQube ') {
                                      sh "docker push  3alouch/ski:$DOCKER_IMAGE_TAG"
                                           }
                     }
-*/
+/*
 stage("Deploy to private registry") {
     steps {
         script {
@@ -70,7 +70,7 @@ stage("Deploy to private registry") {
             sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
         }
     }
-}
+}*/
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
