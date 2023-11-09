@@ -55,7 +55,7 @@ pipeline {
             }
         }
 
-
+/*
 stage('Deploy Image to Nexus') {
     steps {
         script {
@@ -69,7 +69,7 @@ stage('Deploy Image to Nexus') {
         }
     }
 }
-
+*/
          stage('Deploy Image to DockerHub'){
                             steps{
                             echo "Deploying the Docker Image to DockerHub"
