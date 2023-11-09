@@ -54,17 +54,6 @@ pipeline {
                 sh "mvn clean deploy"
             }
         }
-
-         stage('Deploy Image to DockerHub'){
-                            steps{
-                            echo "Deploying the Docker Image to DockerHub"
-                                script{
-                                        sh 'sudo docker login -u mohamedalimzoughi -p dockerhub'
-                                        sh 'sudo docker tag ski mohamedalimzoughi/gestion-station-ski'
-                                        sh 'sudo docker push mohamedalimzoughi/gestion-station-ski'
-                                }
-                            }
-                          }
         stage('Deploy Image to Nexus') {
             steps {
                 script {
@@ -75,10 +64,21 @@ pipeline {
 
                     sh "sudo docker build -t ${dockerImageName}:${dockerTag} ."
                     sh "sudo docker tag ${dockerImageName}:${dockerTag} ${nexusRegistryUrl}${dockerImageName}:${dockerTag}"
-                    sh "sudo docker push ${nexusRegistryUrl}${dockerImageName}:${dockerTag}"
+                    sh "sudo docker push https://192.168.33.10:8081/repository/ahmed_mohsen/ski:latest"
                 }
             }
         }
+         stage('Deploy Image to DockerHub'){
+                            steps{
+                            echo "Deploying the Docker Image to DockerHub"
+                                script{
+                                        sh 'sudo docker login -u mohamedalimzoughi -p dockerhub'
+                                        sh 'sudo docker tag ski mohamedalimzoughi/gestion-station-ski'
+                                        sh 'sudo docker push mohamedalimzoughi/gestion-station-ski'
+                                }
+                            }
+                          }
+
 
         stage('Start Containers') {
             steps {
