@@ -65,7 +65,7 @@
                   </activation>
                   <properties>
                       <sonar.host.url>http://localhost:9000/</sonar.host.url>
-                      <sonar.login>squ_1440e5b6f3274260e69e82a0e2bc29eadf999007</sonar.login>
+                      <sonar.login>${env.SONAR_LOGIN}</sonar.login>
                       <sonar.jacoco.reportPath>target/site/jacoco/jacoco.xml</sonar.jacoco.reportPath>
                   </properties>
               </profile>
