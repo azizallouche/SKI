@@ -55,21 +55,20 @@
         <name>Nexus Repository</name>
         <url>http://localhost:8081/repository/maven-releases/</url>
     </repository>
-    <snapshotRepository>
-        <id>deploymentSki</id>
-        <name>Nexus Rep</name>
-        <url>http://localhost:8081/repository/ski/</url>
-    </snapshotRepository>
+
 </distributionManagement>
           <profiles>
-        <!-- Prod profile -->
-        <profile>
-            <id>prod</id>
-            <properties>
-                <!-- Set the Spring profile to "prod" for the active Spring profile -->
-                <spring.profiles.active>prod</spring.profiles.active>
-            </properties>
-        </profile>
+              <profile>
+                  <id>sonar</id>
+                  <activation>
+                      <activeByDefault>true</activeByDefault>
+                  </activation>
+                  <properties>
+                      <sonar.host.url>http://localhost:9000/</sonar.host.url>
+                      <sonar.login>squ_1440e5b6f3274260e69e82a0e2bc29eadf999007</sonar.login>
+                      <sonar.jacoco.reportPath>target/site/jacoco/jacoco.xml</sonar.jacoco.reportPath>
+                  </properties>
+              </profile>
     </profiles>
     <build>
         <plugins>
@@ -103,6 +102,12 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.8.0.2131</version> <!-- Use the latest version -->
             </plugin>
         </plugins>
     </build>
