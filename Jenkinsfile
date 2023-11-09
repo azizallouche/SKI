@@ -64,7 +64,6 @@ stage('Deploy Image to Nexus') {
             def dockerUsername = 'admin'
             def dockerPassword = 'nexus'
 
-            sh "echo ${dockerPassword} | sudo docker login --username=${dockerUsername} --password-stdin ${nexusRegistryUrl}"
             sh "sudo docker build -t ${dockerImageName}:${dockerTag} ."
             sh "sudo docker tag ${dockerImageName}:${dockerTag} ${nexusRegistryUrl}${dockerImageName}:${dockerTag}"
             sh "sudo docker push ${nexusRegistryUrl}/${dockerImageName}:${dockerTag}"
