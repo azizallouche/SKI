@@ -12,8 +12,10 @@ services:
       - "3306:3306"
 
   springbootapp:
-    build: .  # Use the correct build context where your Dockerfile is located
-    image: ski_station_project
+    container_name: ski-app
+    image: 192.168.33.10:8082/repository/naddou/ski-app:latest
+    restart: on-failure
+    build: .
     ports:
       - "8090:8090"
     environment:
