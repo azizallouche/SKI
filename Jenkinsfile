@@ -57,17 +57,17 @@ stage("Deploy to private registry") {
 
 
             // Build the Docker image
-            sh "docker build -t $dockerImageName:$DOCKER_IMAGE_TAG ."
+            sh "docker build -t ski:latest ."
 
             // Tag the Docker image
-            sh "docker tag $dockerImageName:$DOCKER_IMAGE_TAG ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
+            sh "docker tag ski:latest https://e912-197-16-55-224.ngrok-free.app/repository/ski/ski:latest"
 
             // Log in to the private registry
 
-            sh "echo ${dockerPassword} | docker login --username ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
+            sh "echo ${dockerPassword} | docker login -u admin -p nexus https://e912-197-16-55-224.ngrok-free.app/repository/ski/ski:latest"
 
             // Push the Docker image to the private registry
-            sh "docker push ${nexusRegistryUrl}$dockerImageName:$DOCKER_IMAGE_TAG"
+            sh "docker push https://e912-197-16-55-224.ngrok-free.app/repository/ski/ski:latest"
         }
     }
 }
