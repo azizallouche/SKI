@@ -1,28 +1,32 @@
 -------------------------------------------------------------------------------
 Test set: tn.esprit.SkiStationProject.services.SkierServiceImplTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 1, Errors: 5, Skipped: 0, Time elapsed: 0.224 s <<< FAILURE! - in tn.esprit.SkiStationProject.services.SkierServiceImplTest
-testAssignSkierToPiste  Time elapsed: 0.046 s  <<< ERROR!
+Tests run: 8, Failures: 2, Errors: 5, Skipped: 0, Time elapsed: 0.276 s <<< FAILURE! - in tn.esprit.SkiStationProject.services.SkierServiceImplTest
+testRetrieveSkiersBySubscriptionType  Time elapsed: 0.256 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <1> but was: <0>
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testRetrieveSkiersBySubscriptionType(SkierServiceImplTest.java:123)
+
+testAssignSkierToPiste  Time elapsed: 0.003 s  <<< ERROR!
 java.lang.NullPointerException
-	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAssignSkierToPiste(SkierServiceImplTest.java:117)
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAssignSkierToPiste(SkierServiceImplTest.java:114)
 
 testAssignSkierToSubscription  Time elapsed: 0.001 s  <<< ERROR!
 java.lang.NullPointerException
-	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAssignSkierToSubscription(SkierServiceImplTest.java:75)
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAssignSkierToSubscription(SkierServiceImplTest.java:72)
 
-testRemoveSkier  Time elapsed: 0.044 s  <<< FAILURE!
+testRemoveSkier  Time elapsed: 0.001 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <2> but was: <0>
-	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testRemoveSkier(SkierServiceImplTest.java:103)
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testRemoveSkier(SkierServiceImplTest.java:100)
 
 testRetrieveSkier  Time elapsed: 0.001 s  <<< ERROR!
 java.lang.NullPointerException
-	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testRetrieveSkier(SkierServiceImplTest.java:110)
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testRetrieveSkier(SkierServiceImplTest.java:107)
 
 testAddSkier  Time elapsed: 0.001 s  <<< ERROR!
 java.lang.NullPointerException
-	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAddSkier(SkierServiceImplTest.java:62)
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAddSkier(SkierServiceImplTest.java:59)
 
-testAddSkierAndAssignToCourse  Time elapsed: 0.008 s  <<< ERROR!
+testAddSkierAndAssignToCourse  Time elapsed: 0.007 s  <<< ERROR!
 java.util.NoSuchElementException
-	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAddSkierAndAssignToCourse(SkierServiceImplTest.java:93)
+	at tn.esprit.SkiStationProject.services.SkierServiceImplTest.testAddSkierAndAssignToCourse(SkierServiceImplTest.java:90)
 

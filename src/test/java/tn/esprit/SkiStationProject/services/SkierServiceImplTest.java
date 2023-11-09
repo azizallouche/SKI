@@ -1,4 +1,5 @@
 package tn.esprit.SkiStationProject.services;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -10,7 +11,6 @@ import tn.esprit.SkiStationProject.entities.Piste;
 import tn.esprit.SkiStationProject.entities.Registration;
 import tn.esprit.SkiStationProject.entities.Skier;
 import tn.esprit.SkiStationProject.entities.Subscription;
-import tn.esprit.SkiStationProject.entities.enums.TypeCourse;
 import tn.esprit.SkiStationProject.entities.enums.TypeSubscription;
 import tn.esprit.SkiStationProject.repositories.CourseRepository;
 import tn.esprit.SkiStationProject.repositories.PisteRepository;
@@ -19,11 +19,9 @@ import tn.esprit.SkiStationProject.repositories.SkierRepository;
 import tn.esprit.SkiStationProject.repositories.SubscriptionRepository;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -57,6 +55,7 @@ public class SkierServiceImplTest {
     }
 
     @Test
+    @Order(1)
     public void testAddSkier() {
         Skier skier = new Skier("Louay", "Guetat", LocalDate.of(1998, 03, 26), "Tunis", null, null, null);
         Skier savedSkier = skierServices.addSkier(skier);
@@ -68,6 +67,7 @@ public class SkierServiceImplTest {
     }
 
     @Test
+    @Order(2)
     public void testAssignSkierToSubscription() {
         Subscription subscription = new Subscription(LocalDate.of(2023, 11, 10), LocalDate.of(2024, 11, 9), 600F, TypeSubscription.ANNUAL);
         subscriptionRepository.save(subscription);
@@ -78,6 +78,7 @@ public class SkierServiceImplTest {
     }
 
     @Test
+    @Order(3)
     public void testAddSkierAndAssignToCourse() {
         Skier skier = new Skier();
         skier.setRegistrations(new HashSet<>());
@@ -97,6 +98,7 @@ public class SkierServiceImplTest {
     }
 
     @Test
+    @Order(4)
     public void testRemoveSkier() {
         skierServices.removeSkier(2L);
 
@@ -104,6 +106,7 @@ public class SkierServiceImplTest {
     }
 
     @Test
+    @Order(5)
     public void testRetrieveSkier() {
         Skier skier = skierServices.retrieveSkier(1L);
 
@@ -111,6 +114,7 @@ public class SkierServiceImplTest {
     }
 
     @Test
+    @Order(6)
     public void testAssignSkierToPiste() {
         Piste piste = new Piste();
         pisteRepository.save(piste);
@@ -120,8 +124,11 @@ public class SkierServiceImplTest {
     }
 
     @Test
+    @Order(7)
     public void testRetrieveSkiersBySubscriptionType() {
-        
+        List<Skier> skiers = skierServices.retrieveSkiersBySubscriptionType(TypeSubscription.ANNUAL);
+
+        assertEquals(1, skiers.size());
     }
 
 }
