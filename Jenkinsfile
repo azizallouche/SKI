@@ -12,7 +12,7 @@ pipeline {
             }
         }
 
-        stage('Unit Testing: Run JUnit and Mockito Tests') {
+        /*stage('Unit Testing: Run JUnit and Mockito Tests') {
             steps {
                 sh 'mvn test'
                 //sh "sudo docker start sonar"
@@ -58,7 +58,7 @@ pipeline {
                 script {
                     try {
                         //sh "sudo docker start nexus"
-                        sh "mvn deploy -DskipTests"
+                        sh "mvn deploy -X" //-DskipTests"
                     } catch (Exception e) {
                         error("Failed to deploy: ${e.getMessage()}")
                     }
