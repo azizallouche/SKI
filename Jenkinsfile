@@ -39,7 +39,11 @@ stage('SonarQube ') {
 
 
 
-
+stage('Deploy artifact to nexus') {
+                    steps {
+                           sh 'mvn deploy -DskipTests=true'
+                                }
+                            }
                   stage("Build Docker image") {
                       steps {
                           script {
@@ -84,12 +88,12 @@ stage('SonarQube ') {
                 sh "..............."
             }
         }
-    }
+    }*/
 // deploymentRepo
     post {
         always {
             cleanWs()
         }
-*/
+
     }
 }
