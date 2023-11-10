@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1455ca97-0b34-40db-aa44-4b61f2ca92ef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/tn/esprit/SkiStationProject/JunitPisteImpTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/SkiStationProject/entities/Piste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/SkiStationProject/entities/Piste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tn/esprit/SkiStationProject/JunitPisteImpTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tn/esprit/SkiStationProject/JunitPisteImpTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tn/esprit/SkiStationProject/PisteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tn/esprit/SkiStationProject/PisteServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +110,7 @@
       <workItem from="1699090342058" duration="1584000" />
       <workItem from="1699091979682" duration="22829000" />
       <workItem from="1699207345333" duration="20872000" />
-      <workItem from="1699523991103" duration="21598000" />
+      <workItem from="1699523991103" duration="21759000" />
     </task>
     <servers />
   </component>

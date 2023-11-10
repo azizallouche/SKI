@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 @SpringBootTest
-@ActiveProfiles("test") // Use the "test" profile to configure the H2 in-memory database
+
 @Transactional // Rollback transactions after each test
  class JunitPisteImpTest {
     @Autowired
