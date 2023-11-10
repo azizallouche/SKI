@@ -135,7 +135,7 @@ pipeline {
                 }
 
             }
-        }*/
+        }
         
         stage("Start app and db") {
                     steps {
