@@ -13,7 +13,7 @@ services:
 
   springbootapp:
     build: .
-    image: ski_station_project
+    image: louay/devops-integration
     ports:
       - "8090:8090"
     environment:
