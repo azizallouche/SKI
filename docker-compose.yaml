@@ -23,7 +23,7 @@ services:
     ports:
       - "8090:8090"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/SkiStationDB?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://192.168.33.10:3306/SkiStationDB?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 
       SPRING_JPA_SHOW_SQL: "true"
