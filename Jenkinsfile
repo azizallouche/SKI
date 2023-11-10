@@ -75,11 +75,7 @@ stage('Deploy artifact to nexus') {
 
 
 
-       stage('Deploy') {
-                    steps {
-                           sh 'mvn deploy -DskipTests=true'
-                                }
-                            }
+
 
 /*
 //
