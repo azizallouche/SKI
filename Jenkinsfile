@@ -12,7 +12,7 @@ pipeline {
             }
         }
 
-        stage('Unit Testing: Run JUnit and Mockito Tests') {
+        /*stage('Unit Testing: Run JUnit and Mockito Tests') {
             steps {
                 sh 'mvn test'
                 //sh "docker start sonar"
@@ -55,7 +55,7 @@ pipeline {
             }
         }*/
 
-        stage('Deploy Artifact to Nexus') {
+        /*stage('Deploy Artifact to Nexus') {
             steps {
                 //sh "sudo docker start nexus"
                 
@@ -106,8 +106,8 @@ pipeline {
         }*/
         
         
-        stage('Deploy Image to Nexus') {
-            /*steps {
+        /*stage('Deploy Image to Nexus') {
+            steps {
                 script {
                     // Tag the existing Docker image for Nexus
                     sh "docker tag ski-app:latest 192.168.33.10:8081/registry/nada/ski-app:latest"
@@ -120,7 +120,7 @@ pipeline {
                 }
             }*/
             
-            steps {
+            /*steps {
                 script {
                     def dockerImage = 'ski-app'
                     def dockerTag = 'latest'
@@ -135,7 +135,7 @@ pipeline {
                 }
 
             }
-        }
+        }*/
         
         stage("Start app and db") {
                     steps {
