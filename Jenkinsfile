@@ -35,7 +35,7 @@ stage('SonarQube ') {
                    }
              }
 
-        stages {
+
                stage("Download JAR from Nexus") {
                    steps {
                        script {
