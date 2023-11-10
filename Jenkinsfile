@@ -39,7 +39,7 @@ stage('SonarQube ') {
 
 
 
-              stages {
+
                   stage("Build Docker image") {
                       steps {
                           script {
