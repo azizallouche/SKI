@@ -65,7 +65,14 @@ pipeline {
     }
     post {
         always {
-            publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target/sonar', reportFiles: 'index.html', reportName: 'SonarQube Analysis'])
+            publishHTML([
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'target/sonar',
+                reportFiles: 'index.html',
+                reportName: 'SonarQube Analysis'
+            ])
         }
     }
 }
