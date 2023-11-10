@@ -50,7 +50,16 @@ pipeline {
         stage("Build Docker image") {
             steps {
                 script {
-                    dockerImage = docker.build(dockerimagename, '.')
+                    def dockerImageName = "ski"
+                    def NEXUS_BASE_URL = "http://172.17.0.2:8081/repository"
+                    def NEXUS_REPOSITORY = "maven-releases"
+                    def NEXUS_ARTIFACT_VERSION = "0.0.1"
+                    def MAVEN_ARTIFACT_ID = 'SkiStationProject'
+                    sh "docker build \
+                      --build-arg NEXUS_BASE_URL=${NEXUS_BASE_URL} \
+                      --build-arg NEXUS_REPOSITORY=${NEXUS_REPOSITORY} \
+                      --build-arg NEXUS_ARTIFACT_VERSION=${NEXUS_ARTIFACT_VERSION} \
+                      -t ${dockerImageName}:latest ."
                 }
             }
         }
