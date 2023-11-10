@@ -19,7 +19,7 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
+       stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
@@ -45,6 +45,20 @@ pipeline {
         stage('Deploy Nexus'){
             steps{
                 sh 'mvn clean deploy'
+            }
+        }
+        stage('Deploy Image to DockerHub'){
+            steps{
+                script{
+                        sh 'sudo docker login -u louaygu -p dockerhub'
+                        sh 'sudo docker tag devops-integration louaygu/devops'
+                        sh 'sudo docker push louaygu/devops'
+                }
+            }
+        }
+        stage('Start Containers') {
+            steps {
+                sh "sudo docker-compose -f docker-compose.yaml up -d"
             }
         }
     }
