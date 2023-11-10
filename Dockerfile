@@ -4,5 +4,5 @@ WORKDIR /app
 
 # Omitted the COPY line since the JAR is fetched from Nexus in the Jenkins pipeline
 
-ENTRYPOINT ["java", "-jar", "/app/SkiStationProject-1.0.jar"]
+
 EXPOSE 9091
