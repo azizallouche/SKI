@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1455ca97-0b34-40db-aa44-4b61f2ca92ef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tn/esprit/SkiStationProject/JunitPisteImpTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/SkiStationProject/entities/Piste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/SkiStationProject/entities/Piste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tn/esprit/SkiStationProject/PisteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tn/esprit/SkiStationProject/PisteServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +73,23 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.JunitPisteImpTest.testRetrievePiste">
+    <configuration name="JunitPisteImpTest.testRetrievePiste" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SkiStationProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tn.esprit.SkiStationProject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tn.esprit.SkiStationProject" />
+      <option name="MAIN_CLASS_NAME" value="tn.esprit.SkiStationProject.JunitPisteImpTest" />
+      <option name="METHOD_NAME" value="testRetrievePiste" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SkiStationProjectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="SkiStationProject" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.SkiStationProject.SkiStationProjectApplication" />
@@ -76,6 +97,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.JunitPisteImpTest.testRetrievePiste" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -89,7 +115,7 @@
       <workItem from="1699090342058" duration="1584000" />
       <workItem from="1699091979682" duration="22829000" />
       <workItem from="1699207345333" duration="20872000" />
-      <workItem from="1699523991103" duration="8551000" />
+      <workItem from="1699523991103" duration="21598000" />
     </task>
     <servers />
   </component>
