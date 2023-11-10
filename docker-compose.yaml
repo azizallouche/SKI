@@ -15,7 +15,7 @@ services:
     build: .
     image: louay/devops-integration
     ports:
-      - "8090:8090"
+      - "9090:9090"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/SkiStationDB?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
