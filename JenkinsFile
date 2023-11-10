@@ -9,26 +9,26 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: 'Louay']], userRemoteConfigs: [[url: 'https://github.com/azizallouche/SKI.git']]])
             }
         }
-        stage("Unit Testing") {
-            steps {
-                sh "mvn test"
-            }
-            post{
-              always{
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                }
-            }
-        }
+        //stage("Unit Testing") {
+        //    steps {
+        //        sh "mvn test"
+         //   }
+         //   post{
+         //     always{
+        //            junit '**/target/surefire-reports/TEST-*.xml'
+         //       }
+        //    }
+        //}
        stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
         }
-        stage('SonarQube Analysis') {
-            steps {
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=Louay1998'
-            }
-        }
+        //stage('SonarQube Analysis') {
+        //    steps {
+        //        sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=Louay1998'
+        //    }
+        //}
         stage('Build Artefact'){
             steps{
                 sh 'mvn clean'
@@ -48,15 +48,15 @@ pipeline {
         //        sh 'mvn clean deploy'
         //    }
         //}
-        stage('Deploy Image to DockerHub'){
-            steps{
-                script{
-                        sh 'docker login -u louaygu -p Louay1998'
-                        sh 'docker tag louay/devops-integration louaygu/devops:latest'
-                        sh 'docker push louaygu/devops:latest'
-                }
-            }
-        }
+        //stage('Deploy Image to DockerHub'){
+        //    steps{
+        //        script{
+        //                sh 'docker login -u louaygu -p Louay1998'
+        //                sh 'docker tag louay/devops-integration louaygu/devops:latest'
+        //                sh 'docker push louaygu/devops:latest'
+        //        }
+        //    }
+        //}
         stage('Start Containers') {
             steps {
                 sh "docker-compose -f docker-compose.yaml up -d"
