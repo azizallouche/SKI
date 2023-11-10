@@ -6,12 +6,10 @@ services:
     image: mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root  # Change this line
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: SkiStationDB
     ports:
       - "3306:3306"
-    networks:
-      - devopsprojectpipeline_default
     volumes:
       - mysqldata:/var/lib/mysql
 
@@ -19,20 +17,17 @@ services:
     container_name: ski-app
     image: 192.168.33.10:8082/repository/naddou/ski-app:latest
     restart: on-failure
-    build: .
     ports:
       - "8090:8090"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/SkiStationDB?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root  # Make sure to use the same password here
+      SPRING_DATASOURCE_PASSWORD: root
       SPRING_JPA_SHOW_SQL: "true"
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL5Dialect
     depends_on:
       - mysqldb
-    networks:
-      - devopsprojectpipeline_default
 
 networks:
   devopsprojectpipeline_default:
