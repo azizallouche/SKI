@@ -5,6 +5,7 @@ pipeline {
         NEXUS_BASE_URL = "http://localhost:8081/repository"
                 NEXUS_REPOSITORY = "maven-releases"
                 NEXUS_ARTIFACT_VERSION = "1.0"
+                 MAVEN_ARTIFACT_ID = 'SkiStationProject'
     }
     agent any
     stages {
@@ -37,13 +38,13 @@ stage('SonarQube ') {
 
 
                stage("Download JAR from Nexus") {
-                   steps {
-                       script {
-                           // Use Maven or another tool to download the JAR from Nexus
-                           sh "mvn org.apache.maven.plugins:maven-dependency-plugin:3.1.1:get -DgroupId=your_group_id -DartifactId=your_artifact_id -Dversion=${NEXUS_ARTIFACT_VERSION} -DrepoUrl=${NEXUS_BASE_URL}/repository/${NEXUS_REPOSITORY} -Dtransitive=false"
-                       }
-                   }
-               }
+                          steps {
+                              script {
+                                  // Use Maven to download the JAR from Nexus
+                                  sh "mvn org.apache.maven.plugins:maven-dependency-plugin:3.1.1:get -DgroupId=tn.esprit.ds -DartifactId=${MAVEN_ARTIFACT_ID} -Dversion=${NEXUS_ARTIFACT_VERSION} -DrepoUrl=${NEXUS_BASE_URL}/repository/${NEXUS_REPOSITORY} -Dtransitive=false"
+                              }
+                          }
+                      }
 
                stage("Build Docker image") {
                    steps {
