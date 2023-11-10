@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 pipeline {
 
     environment {
@@ -109,4 +110,6 @@ pipeline {
     }
 }
 
+=======
+>>>>>>> b483546981e60ba723ffe1aa8b25a119476a5959
 
