@@ -27,7 +27,9 @@ pipeline {
                     sh "mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
                     
                     sh "docker stop sonar"
+                    sh "sleep 60"
                     sh "docker start nexus"
+                    sh "sleep 60"
                 }
             }
         }
