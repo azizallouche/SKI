@@ -148,7 +148,7 @@ pipeline {
 
                             sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
                             sh "docker-compose pull" // Pull the Docker image from the private registry
-                            sh "docker-compose up -d"  // Start the application and database containers
+                            sh "COMPOSE_HTTP_TIMEOUT=120 docker-compose up -d"  // Start the application and database containers
                         }
                     }
         }
