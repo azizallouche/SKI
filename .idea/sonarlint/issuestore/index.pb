@@ -40,3 +40,5 @@ Ksrc/main/java/tn/esprit/SkiStationProject/repositories/PisteRepository.java,4/
 Rsrc/main/java/tn/esprit/SkiStationProject/repositories/SubscriptionRepository.java,6/5/659d6aebedaf61610f37aba48d0f0525a31ae08a
 p
 @src/test/java/tn/esprit/SkiStationProject/JunitPisteImpTest.java,2/f/2f08ff509eac1ad0ac337b53311e02e57308edbd
+h
+8src/test/java/tn/esprit/SkiStationProject/PisteTest.java,8/a/8a600ca9fcac8a4c8e394b7f39e9b7da627b793f
