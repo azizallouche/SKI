@@ -52,7 +52,7 @@ stage('SonarQube ') {
                           }
                       }
                   }
-              }
+
 
          stage('dockerhub') {
                                           steps {
