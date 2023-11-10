@@ -1,5 +1,9 @@
 version: '3.9'
 
+networks:
+  devopsprojectpipeline_default:
+    external: true
+
 services:
   mysqldb:
     container_name: mysqldb
@@ -8,8 +12,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 
       MYSQL_DATABASE: SkiStationDB
+    
     ports:
       - "3306:3306"
+    networks:
+      - devopsprojectpipeline_default
 
   springbootapp:
     container_name: ski-app
@@ -27,5 +34,7 @@ services:
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL5Dialect
     depends_on:
       - mysqldb
+    networks:
+      - devopsprojectpipeline_default
 
   
