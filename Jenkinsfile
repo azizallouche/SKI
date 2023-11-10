@@ -37,27 +37,23 @@ stage('SonarQube ') {
              }
 
 
-               stage("Download JAR from Nexus") {
-                          steps {
-                              script {
-                                  // Use Maven to download the JAR from Nexus
-                                  sh "mvn org.apache.maven.plugins:maven-dependency-plugin:3.1.1:get -DgroupId=tn.esprit.ds -DartifactId=${MAVEN_ARTIFACT_ID} -Dversion=${NEXUS_ARTIFACT_VERSION} -DrepoUrl=${NEXUS_BASE_URL}/repository/${NEXUS_REPOSITORY} -Dtransitive=false"
-                              }
+
+
+              stages {
+                  stage("Build Docker image") {
+                      steps {
+                          script {
+                              // Build Docker image using the JAR file from Nexus
+                              sh "docker build \
+                                  --build-arg NEXUS_BASE_URL=${NEXUS_BASE_URL} \
+                                  --build-arg NEXUS_REPOSITORY=${NEXUS_REPOSITORY} \
+                                  --build-arg NEXUS_ARTIFACT_VERSION=${NEXUS_ARTIFACT_VERSION} \
+                                  -t ${dockerImageName}:${DOCKER_IMAGE_TAG} ."
                           }
                       }
+                  }
+              }
 
-               stage("Build Docker image") {
-                   steps {
-                       script {
-                           // Build Docker image using the downloaded JAR
-                           sh "docker build \
-                               --build-arg NEXUS_BASE_URL=${NEXUS_BASE_URL} \
-                               --build-arg NEXUS_REPOSITORY=${NEXUS_REPOSITORY} \
-                               --build-arg NEXUS_ARTIFACT_VERSION=${NEXUS_ARTIFACT_VERSION} \
-                               -t ${dockerImageName}:${DOCKER_IMAGE_TAG} ."
-                       }
-                   }
-               }
          stage('dockerhub') {
                                           steps {
 
