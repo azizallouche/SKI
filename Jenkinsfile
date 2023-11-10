@@ -87,8 +87,8 @@ stage('Deploy artifact to nexus') {
             steps {
                 sh "..............."
             }
-        }
-    }*/
+        }*/
+    }
 // deploymentRepo
     post {
         always {
