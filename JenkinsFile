@@ -39,26 +39,27 @@ pipeline {
             steps{
                 script{
                     sh 'docker build -t louay/devops-integration .'
+                    sh 'docker images'
                 }
             }
         }
-        stage('Deploy Nexus'){
-            steps{
-                sh 'mvn clean deploy'
-            }
-        }
+        //stage('Deploy Nexus'){
+        //    steps{
+        //        sh 'mvn clean deploy'
+        //    }
+        //}
         stage('Deploy Image to DockerHub'){
             steps{
                 script{
-                        sh 'sudo docker login -u louaygu -p dockerhub'
-                        sh 'sudo docker tag devops-integration louaygu/devops'
-                        sh 'sudo docker push louaygu/devops'
+                        sh 'docker login -u louaygu -p Louay1998'
+                        sh 'docker tag louay/devops-integration louaygu/devops:latest'
+                        sh 'docker push louaygu/devops:latest'
                 }
             }
         }
         stage('Start Containers') {
             steps {
-                sh "sudo docker-compose -f docker-compose.yaml up -d"
+                sh "docker-compose -f docker-compose.yaml up -d"
             }
         }
     }
